@@ -3,7 +3,6 @@ const history = (app,pool) => {
     app.get('/dashboard/history',async (req,res)=>{
         const conn = await pool.getConnection();
         if(global.whoAccess === 'user'){
-            const user = await conn.query('SELECT email FROM portal WHERE username =?', [req.session.user]);
             const history = await conn.query(`
             SELECT 
               appointment.appointment_id AS app_id,
@@ -30,11 +29,7 @@ const history = (app,pool) => {
                 historys.push(history);
             });
             
-            res.render('clientDashboard/history', {
-                historys,
-                username: req.session.user,
-                email: user[0].email
-            });
+            res.render('clientDashboard/history', {historys});
         }else if(global.whoAccess === 'admin'){
     
         }else{

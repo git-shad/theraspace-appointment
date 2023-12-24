@@ -48,9 +48,9 @@
   <div id="sidebar" class="sidebar fixed bg-orange-500 w-full md:w-[250px] top-0 bottom-0 md:left-0 mt-8 md:mt-0 py-4 h-screen hidden md:block">
     <div class="text-white text-xl flex flex-col h-full">
       <div class="p-4 mt-1 text-center mx-auto flex flex-col items-center justify-center">
-        <img src="img/logo-removebg-preview.png" alt="" class="w-16 md:w-24 rounded-full">
-        <h1 class="font-bold text-white text-[20px] tracking-wider">Isaac Newton</h1>
-        <p class="text-sm italic">qwerty@gmail.com</p>
+        <img src="<%= global.profile %>" alt="" class="w-16 md:w-24 rounded-full">
+        <h1 class="font-bold text-white text-[20px] tracking-wider"><%= global.username %></h1>
+        <p class="text-sm italic"><%= global.email %></p>
       </div>
       <hr class="border-t border-white my-4">
       <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
@@ -60,7 +60,7 @@
         </a>
       </div>
       <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
-        <a href="appointment" class="w-full flex justify-start items-center py-2 text-[15px] hover:opacity-60 hover:duration-200">
+        <a href="appointments" class="w-full flex justify-start items-center py-2 text-[15px] hover:opacity-60 hover:duration-200">
           <ion-icon name="calendar-outline" class="pr-4 pl-4 md:text-2xl"></ion-icon>         
           <span>APPOINTMENT</span>
         </a>
@@ -252,4 +252,5 @@ dateInput.value = formattedDate;
   </script>
 </body>
 <script src="index.js"></script>
+<script src="fetching.js"></script>
 </html>

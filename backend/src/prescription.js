@@ -4,7 +4,6 @@ const prescription = (app,pool)=>{
         
         try{
             if (global.whoAccess === 'user') {
-                const user = await conn.query('SELECT email FROM portal WHERE username =?', [req.session.user]);
                 const prescription = await conn.query('select prescription.prescription_id as id,date_format(appointment.date, "%m/%d/%Y") as date,appointment.childname as fullname from appointment join prescription on appointment.appointment_id = prescription.appointment_id where appointment.portal_id in (select portal_id from portal where username = ?)',[req.session.user]);
                 
                 let prescriptions = [];
@@ -17,11 +16,7 @@ const prescription = (app,pool)=>{
                     prescriptions.push(prescription);
                 });
 
-                res.render('clientDashboard/prescription',{
-                    prescriptions,
-                    username: req.session.user,
-                    email: user[0].email
-                });
+                res.render('clientDashboard/prescription',{prescriptions});
             } else if (global.whoAccess === 'admin') {
             // admin
             } else {

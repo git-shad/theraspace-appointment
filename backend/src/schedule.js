@@ -4,7 +4,6 @@ const schedule = (app, pool) => {
         
         try{
             if (global.whoAccess === 'user') {
-                const user = await conn.query('SELECT email FROM portal WHERE username =?', [req.session.user]);
                 const schedule = await conn.query(`
                 SELECT 
                   appointment.appointment_id AS app_id,
@@ -31,11 +30,7 @@ const schedule = (app, pool) => {
                   schedules.push(schedule);
                 });
             
-            res.render('clientDashboard/schedule', {
-              schedules,
-              username: req.session.user,
-              email: user[0].email
-            });
+            res.render('clientDashboard/schedule', {schedules});
         } else if (global.whoAccess === 'admin') {
           // admin
         } else {

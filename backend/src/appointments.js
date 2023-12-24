@@ -3,7 +3,6 @@ const appointments = (app, pool) => {
         const conn = await pool.getConnection();
         try {
             if (global.whoAccess === 'user') {
-                const user = await conn.query('SELECT email FROM portal WHERE username =?',[req.session.user]);
                 const schedule = await conn.query('SELECT schedule_id,DATE_FORMAT(time_s, "%h:%i%p") as stime, DATE_FORMAT(time_e, "%h:%i%p") as etime from schedule');
   
                 let appointments = [];
@@ -16,11 +15,7 @@ const appointments = (app, pool) => {
                     };
                     appointments.push(appointment);
                 });
-            res.render('clientDashboard/appointments',{
-                appointments,
-                username: req.session.user,
-                email: user[0].email
-            });
+            res.render('clientDashboard/appointments',{appointments});
         } else if (global.whoAccess === 'admin') {
           res.render('adminDashboard/appointments')
         } else {
