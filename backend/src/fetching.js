@@ -10,6 +10,15 @@ function changeID(id){
     document.querySelector('#boxID').innerHTML = id;
 }
 
+fetch('*')
+.then(response => response.json())
+.then(data =>{
+    if(data.location){
+        console.log('relocate')
+        window.location.href = data.location;
+    }
+})
+
 function confirmLogout() {
     Swal.fire({
       title: 'Are you sure?',

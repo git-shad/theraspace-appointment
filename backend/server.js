@@ -36,6 +36,15 @@ app.use(session({
     saveUninitialized: true
 }));
 
+app.use((req, res, next) => {
+    res.cookie('cookieName', 'cookieValue', {
+      expires: new Date(Date.now() + 900000),
+      httpOnly: true,
+      secure: true
+    });
+    next();
+});
+
 home(app);
 dashboard(app,pool);
 appointments(app,pool);
@@ -138,7 +147,7 @@ app.post('/login', async (req,res)=>{
                 const account = await conn.query('select image,email,username from account join portal on account.portal_id = portal.portal_id where account.portal_id in(select portal_id from portal where username = ?)',[req.session.user]);
                 global.profile = account[0].image;
                 global.email = account[0].email;
-                global.username = account[0].username;
+                global.username = req.session.user;
 
 
                 if(user.role === 'user'){

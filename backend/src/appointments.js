@@ -38,7 +38,6 @@ const appointments = (app, pool) => {
                 const {schedule_id,date,fname,lname,childname,contact} = req.body;
                 await conn.query('INSERT INTO appointment (portal_id,schedule_id,date,firstname,lastname,childname,contact) VALUES((SELECT portal_id from portal where username =?),?,?,?,?,?,?)',[req.session.user,parseInt(schedule_id),date,fname,lname,childname,contact]);
                 console.log('appointment recorded!');
-                
             } else if (global.whoAccess === 'admin') {
                 //addmin
             } else {
@@ -48,7 +47,7 @@ const appointments = (app, pool) => {
         console.log(error);
         res.status(500).send('An error occurred while processing your request.');
       }finally{
-        conn.end();
+        await conn.end();
       }
     });
   }
