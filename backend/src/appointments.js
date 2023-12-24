@@ -22,7 +22,7 @@ const appointments = (app, pool) => {
                 email: user[0].email
             });
         } else if (global.whoAccess === 'admin') {
-          //addmin
+          res.render('adminDashboard/appointments')
         } else {
           res.redirect('/login')
         }

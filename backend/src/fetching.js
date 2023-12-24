@@ -60,7 +60,7 @@ if(login){
                         icon: "success"
                       }).then((result) => {
                         if (result.isConfirmed) {
-                          window.location.href = '/dashboard/appointments';
+                          window.location.href = data.location;
                         }
                       });
                 }else{ 

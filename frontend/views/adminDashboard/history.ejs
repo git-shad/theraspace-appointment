@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="/src/output.css">
-  <link rel="stylesheet" href="/src/input.css">
-  <link rel="stylesheet" href="/ionicons.designerpack/.css">
+  <link rel="stylesheet" href="design.css">
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -48,33 +46,33 @@
   </div>
   
   <div id="sidebar" class="sidebar fixed bg-orange-500 w-full md:w-[250px] top-0 bottom-0 md:left-0 mt-8 md:mt-0 py-4 h-screen hidden md:block">
-    <div class="text-white text-xl flex flex-col justify-between h-full">
+    <div class="text-white text-xl flex flex-col h-full">
       <div class="p-4 mt-1 text-center mx-auto flex flex-col items-center justify-center">
         <img src="img/logo-removebg-preview.png" alt="" class="w-16 md:w-24 rounded-full">
-        <h1 class="font-bold text-white text-[20px] tracking-wider">ADMIN</h1>
-        <p class="text-sm italic">theraspace@gmail.com</p>
+        <h1 class="font-bold text-white text-[20px] tracking-wider">Isaac Newton</h1>
+        <p class="text-sm italic">qwerty@gmail.com</p>
       </div>
       <hr class="border-t border-white my-4">
       <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
-        <a href="admindashboard.html" class="w-full flex justify-start items-center py-2 text-[15px] active">
+        <a href="dashboard" class="w-full flex justify-start items-center py-2 text-[15px] hover:opacity-60 hover:duration-200">
           <ion-icon name="home-outline" class="pr-4 pl-4 md:text-2xl"></ion-icon>
           <span>DASHBOARD</span>
         </a>
       </div>
       <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
-        <a href="appointment.html" class="w-full flex justify-start items-center py-2 text-[15px] hover:opacity-60 hover:duration-200">
+        <a href="appointment" class="w-full flex justify-start items-center py-2 text-[15px] hover:opacity-60 hover:duration-200">
           <ion-icon name="calendar-outline" class="pr-4 pl-4 md:text-2xl"></ion-icon>         
           <span>APPOINTMENT</span>
         </a>
       </div>
       <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
-        <a href="history.html" class="w-full flex justify-start items-center py-2 text-[15px] hover:opacity-60 hover:duration-200">
+        <a href="history" class="w-full flex justify-start items-center py-2 text-[15px] active">
           <ion-icon name="time-outline" class="pr-4 pl-4 md:text-2xl"></ion-icon> 
           <span>HISTORY</span>
         </a>
       </div>
       <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
-        <a href="prescription.html" class="w-full flex justify-start items-center py-2 text-[15px] hover:opacity-60 hover:duration-200">
+        <a href="prescription" class="w-full flex justify-start items-center py-2 text-[15px] hover:opacity-60 hover:duration-200">
           <ion-icon name="clipboard-outline" class="pr-4 pl-4 md:text-2xl"></ion-icon> 
           <span>PRESCRIPTION</span>
         </a>
@@ -93,89 +91,58 @@
       </div> 
     </div>
   </div>
-  
   <!-- Page Content -->
   <div class="md:fixed md:ml-[250px] mt-16 md:mt-2 w-full">
     <div class="md:ml-6 my-6 w-full">
-      <h1 class="md:ml-4 pt-4 text-[30px] md:text-4xl text-orange-500 font-bold tracking-widest text-center md:text-start">DASHBOARD</h1>
+      <h1 class="md:ml-4 pt-4 text-[30px] md:text-4xl text-orange-500 font-bold tracking-widest text-center md:text-start">HISTORY</h1>
     </div>
-    <hr class="border-t-4 border-orange-500 my-4 md:my-0">
-    <div class="md:mt-8 w-full">
-      <div class="md:ml-6 mb-4 md:w-[80%]">
-        
-          <div class="bg-slate-200 rounded-md p-4 m-2 md:m-0 md:flex gap-4">
+    <hr class="border-t-4 border-orange-500">
 
-            <div class="bg-white p-4 rounded-md flex md:justify-center items-center gap-8 md:w-1/2 m-4 md:mx-0 md:my-0">
-              <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-round"><path d="M18 21a8 8 0 0 0-16 0"/><circle cx="10" cy="8" r="5"/><path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/></svg>
-              <div class="gap-8">
-                <h1 class="text-[12px] font-bold ">Happy Clients</h1>
-                <div class="flex gap-4 items-center">
-                  <h1 class="font-bold text-[24px] md:text-[42px]">6</h1>
-                  <div>
-                    <h1>This Month</h1>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="bg-white p-4 rounded-md flex md:justify-center items-center gap-8 md:w-1/2 m-4 md:mx-0 md:my-0">
-              <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-clock"><path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h5"/><path d="M17.5 17.5 16 16.3V14"/><circle cx="16" cy="16" r="6"/></svg>
-              <div class="gap-8">
-                <h1 class="text-[12px] font-bold ">Number of Appointments</h1>
-                <div class="flex gap-4 items-center">
-                  <h1 class="font-bold text-[24px] md:text-[42px]">36</h1>
-                  <div>
-                    <h1>This Month</h1>
-                  </div>
-                </div>
-              </div>
-            </div>
+    <div class="gap-4 md:mt-8">
 
-            <div class="bg-white p-4 rounded-md flex md:justify-center items-center gap-8 md:w-1/2 m-4 md:mx-0 md:my-0">
-              <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-x-2"><path d="M8 2v4"/><path d="M16 2v4"/><path d="M21 13V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8"/><path d="M3 10h18"/><path d="m17 22 5-5"/><path d="m17 17 5 5"/></svg>
-              <div class="gap-8">
-                <h1 class="text-[12px] font-bold ">Cancelled Appointments</h1>
-                <div class="flex gap-4 items-center">
-                  <h1 class="font-bold text-[24px] md:text-[42px]">20</h1>
-                  <div>
-                    <h1>This Month</h1>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
+      <div class="md:ml-6 md:w-[80%] m-2 md:m-0">
+        <h1 class="text-black font-bold text-[12px] mb-4 text-center md:text-start">APPOINTMENTS HISTORY:</h1>
+        <div class="text-center md:text-start">
+          <span class="font-semibold text-[16px] mx-4">Date: </span><input type="date" id="dateInput" name="dateInput" class="mx-auto border p-2 rounded-lg mb-4 md:mb-2 border-slate-500">
+        </div>
+        <div class="bg-slate-200 w-full p-8 rounded-md overflow-y-auto md:max-h-[500px]">
+          
           <div>
-            <div class="flex justify-center items-center md:justify-start">
-            <span class="my-4 text-black font-bold tracking-widest text-center md:text-start text-[16px]">Today - 8 Appointments</span>
-            </div>
-            <div class="bg-slate-200 rounded-md p-4 m-2 md:m-0 md:overflow-y-auto md:md:max-h-[320px]">
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div id="boxes" class="inset-0 grid grid-cols-1 md:grid-cols-4 gap-8">
 
-                <div class="bg-white shadow-md hover:shadow-lg hover:transform hover:scale-105 transition duration-300 ease-in-out">
-                  <div class="flex justify-center items-center p-4 rounded-md gap-8 ">
-                    <img src="img/logo-removebg-preview.png" alt="" class="w-16">
-                    <div class="">
-                      <h1 class="text-[16px] font-bold ">Isaac Newton</h1>
-                      <h1 class="text-[12px]"><i>qwerty@gmail.com</i></h1>
-                    </div>
-                  </div>
-                    <button id="appointmentBtn" class="bg-orange-500 text-white w-full flex justify-center p-2 hover:bg-opacity-50">View Details</button>         
+              <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg hover:transform hover:scale-110 transition duration-300 ease-in-out relative">
+                <!-- Background image -->
+                  <svg id="deleteBtn" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2 absolute top-0 right-0 mt-2 mr-2 text-red-600 cursor-pointer"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+                
+                <div>
+                  <h6 class="text-[12px] font-semibold text-black">Schedule:</h6>
+                  <h6 class="text-[14px] font-semibold text-black">12/05/24</h6>
+                  <h2 class="font-semibold">7:00am - 9:00am</h2>
                 </div>
-
+                
+                <!-- Content for Box 1 -->
+                <div class="mt-8 w-full text-center border py-[6px] bg-orange-500 text-white rounded-lg hover:opacity-75 duration-300 ease-in-out flex items-center justify-center">
+                  <button id="appointmentBtn" class="flex items-center text-[12px]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-history mr-2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>View History
+                  </button>
+                </div>
               </div>
-  
-            </div>
-          </div>
+
+
+            </div> 
+          </div> <!-- -->
+          
+        </div>
+      </div>
+
         
     </div>  
   </div>
 
-  <!-- View Details Button -->
+  <!-- Appointment Button -->
   <div id="popupBackdrop" class="fixed inset-0 hidden bg-black bg-opacity-50 shadow-lg">
     <section class="fixed top-0 left-0 flex items-center justify-center w-full h-full hidden" id="section">
-      <div class="bg-white border border-orange-500 p-12 rounded-md items-center relative md:w-80">
+      <div class="bg-white border border-orange-500 p-12 m-4 md:m-0 rounded-md items-center relative md:w-80">
         <div class="absolute top-0 right-0 p-2">
           <button id="cancelButton" class="text-orange-500 hover:rotate-180 focus:outline-none transform transition duration-300 ease-in-out">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x w-6 h-6">
@@ -186,13 +153,20 @@
           </button>
         </div>
         <h1 class="text-orange-500 font-extrabold text-center text-[10px] tracking-widest mb-4">APPOINTMENT DETAILS:</h1>
-        <div class="grid grid-cols-1 gap-2 overflow-y-auto max-h-[250px]">
-          <div class="border border-orange-500 rounded-md p-2">
-            <h1 class="font-bold text-[10px]">15/05/2024</h1>
-            <h1 class="text-[16px]">7:00am - 9am</h1>
-          </div>
-        </div>
+
+        <label for="fullname" class="block mb-2 font-bold text-[12px] text-orange-500">Appointment No.</label>
+        <input type="text" id="fullname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" readonly>
+
+        <label for="fullname" class="block mb-2 font-bold text-[12px] text-orange-500">Guardian:</label>
+        <input type="text" id="fullname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2">
+        <input type="text" id="fullname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2">
   
+        <label for="childname" class="block mb-2 font-bold text-[12px] text-orange-500">Children:</label>
+        <input type="text" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2">
+  
+        <label for="" class="block mb-2 font-bold text-[12px] text-orange-500">Contact:</label>
+        <input type="number" id="age" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2">
+
 
       </div>
     </section>
@@ -249,43 +223,33 @@ cancelButton.addEventListener('click', function() {
   popupBackdrop.classList.add('hidden');
 });
 
+deleteBtn.addEventListener('click', function(){
+  Swal.fire({
+      title: 'Are you sure?',
+      text: 'Delete History',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Appointment History!",
+          text: "Deleted",
+          icon: "success"
+        });
+      }
+    });
+})
+
 // Calendar Date
 const dateInput = document.getElementById('dateInput');
 const currentDate = new Date();
 const formattedDate = currentDate.toISOString().slice(0,10);
 dateInput.value = formattedDate;
 
-  // Function to show logout confirmation
-  function confirmLogout() {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'You will be logged out',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, log me out!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // Perform logout action here, e.g., redirect to logout page
-        window.location.href = 'login.html';
-      }
-    });
-  }
-
-  // 
-  document.getElementById('setSchedule').addEventListener('click', function(){
-    Swal.fire({
-        title: "Successfully Created!",
-        text: "Recorded",
-        icon: "success"
-    })
-  
-});
-
-
-
-</script>
+  </script>
 </body>
 <script src="index.js"></script>
 </html>
