@@ -116,10 +116,9 @@ if(signup){
     });
 }
 
-const appointment = $('#confirm_appointment');
-if(appointment){
-    console.log('confirm_appointment hayss')
-    appointment.addEventListener('click',(e)=>{
+const confirm_appointment = $('#confirm_appointment');
+if(confirm_appointment){
+    confirm_appointment.addEventListener('click',(e)=>{
         e.preventDefault();
         
         const schedule_id = $('#boxID').innerHTML;
@@ -163,3 +162,5 @@ if(appointment){
         });        
     });
 }
+
+const 

@@ -168,7 +168,7 @@ app.post('/login', async (req,res)=>{
     }
 });
 
-app.get('/logout', (req,res) => {
+app.get('/dashboard/logout', (req,res) => {
     req.session.destroy((err) => {
         if (err) {
             console.error(err);
