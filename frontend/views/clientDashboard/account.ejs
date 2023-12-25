@@ -184,18 +184,18 @@
         </div>
         <h1 class="text-orange-500 font-extrabold text-center text-[10px] tracking-widest mb-4">ACCOUNT INFORMATION:</h1>
 
-        <input type="text" id="fname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Firstname" required>
+        <input type="text" id="fname" value="<%= firstname %>" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Firstname" required>
 
-        <input type="text" id="lname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Lastname" required>
+        <input type="text" id="lname" value="<%= lastname%>" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Lastname" required>
 
-        <input type="email" id="eml" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Email" required>
+        <input type="email" id="eml" value="<%= email %>" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Email" required>
   
-        <input type="text" id="addr" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Address" required>
+        <input type="text" id="addr" value="<%= address %>" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Address" required>
 
-        <input type="number" id="cont" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Contact" required>
+        <input type="number" id="cont" value="<%= contact %>" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Contact" required>
 
         <label for="" class="block mb-2 font-bold text-[12px] text-orange-500">Upload Image:</label>
-        <input type="file" id="image" accept="image/*" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2 text-[12px]" required>
+        <input type="file" id="image" value="<%= global.profile %>" accept="image/*" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2 text-[12px]" required>
 
         <button id="updateInfo" class="flex items-center text-[12px] mt-4 w-full text-center border py-[6px] bg-orange-500 text-white rounded-lg hover:opacity-75 duration-300 ease-in-out">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-pen-line ml-8 mr-4"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-.5"/><path d="M16 4h2a2 2 0 0 1 1.73 1"/><path d="M8 18h1"/><path d="M18.4 9.6a2 2 0 0 1 3 3L17 17l-4 1 1-4Z"/></svg>

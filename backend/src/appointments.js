@@ -26,12 +26,11 @@ const appointments = (app, pool) => {
         } else {
           res.redirect('/login')
         }
-        conn.end();
       } catch (error) {
         console.log(error);
         res.status(500).send('An error occurred while processing your request.');
       }finally{
-        conn.close();
+        conn.end();
       }
     });
   

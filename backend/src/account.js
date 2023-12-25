@@ -28,8 +28,9 @@ const account = (app, pool) => {
       fs.mkdirSync('profiles');
     }
 
+
+    const conn = await pool.getConnection();
     try {
-      const conn = await pool.getConnection();
       const { firstname, lastname, email, address, contact } = req.body;
       const image = req.file;
 
@@ -38,14 +39,19 @@ const account = (app, pool) => {
         await fs.promises.writeFile(`profiles/${image.originalname}`, fileContent);  
       }
 
-      await conn.query('update account set firstname=?,lastname=?,address=?,contact=? where portal_id in(select portal_id from portal where username = ?)', [firstname, lastname, address, contact, req.session.user]);
-      await conn.query('update portal set email=? where  username = ?', [email, req.session.user]);
+      const account = await conn.query('update account set firstname=?,lastname=?,address=?,contact=? where portal_id in(select portal_id from portal where username = ?)', [firstname, lastname, address, contact, req.session.user]);
+      const portal = await conn.query('update portal set email=? where  username = ?', [email, req.session.user]);
 
+      if(account.affectedRows > 0 && portal.affectedRows > 0){
+        console.log('updated account info');
+      }
+
+      
     } catch (error) {
       console.error(error);
       res.status(500).send('Error writing file');
     }finally{
-      conn.close();
+      conn.end();
     }
   });
 };

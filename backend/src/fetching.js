@@ -68,11 +68,8 @@ if(login){
                     password.value = '';
                     $('#passerr').innerHTML = data.success;
                 }
-                
-                // Do something with the response data
             } else {
                 console.log('No data returned from the backend');
-                // Handle the case where no data is returned
             }
         })
         .catch(error => {

@@ -61,8 +61,8 @@ app.get('/login', (req, res) => {
 
 app.post('/login', async (req,res)=>{
     const {username, password} = req.body;
+    const conn = await pool.getConnection();
     try {
-        const conn = await pool.getConnection();
         const rows = await conn.query('SELECT username, email, password FROM portal WHERE email =?', [username]);
         if(rows.length > 0){
             const user = rows[0];
@@ -81,11 +81,13 @@ app.post('/login', async (req,res)=>{
         }else{
              res.json({success: 'No account configured!'});
         }
-        conn.end();
     } catch (err) {
         console.log(err);
         res.json({redirect: '/signup'})
+    }finally{
+        conn.end();
     }
+
 });
 
 app.get('/dashboard/logout', (req,res) => {
@@ -102,17 +104,18 @@ app.get('/dashboard/logout', (req,res) => {
 
 app.post('/signup', async (req, res) => {
     const { username, email, password } = req.body;
+    const conn = await pool.getConnection();
+        
     try {
         if (!username ||!email ||!password) {
             throw new Error('All fields are required');
         }
         const hash = await bcrypt.hash(password, 10);
-        const conn = await pool.getConnection();
         await conn.query('INSERT INTO portal (username,email,password) VALUES (?,?,?)',[username, email, hash]);
         await conn.query('insert into urole (portal_id,role) values ((select portal_id from portal where username =?),?)',[username,'user']);
         await conn.query('insert into account (portal_id,image) values((select portal_id from portal where username = ?),?)', [username, 'img/logo-removebg-preview.png']);
         res.json({redirect: '/login'});
-        conn.end();
+        
     } catch (err) {
         console.log(err);
         if (err.message === 'All fields are required') {
@@ -120,6 +123,8 @@ app.post('/signup', async (req, res) => {
         } else {
             res.json({redirect: '/signup'})
         }
+    }finally{
+        conn.end();
     }
 });
 
