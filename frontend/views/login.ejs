@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/design.css">
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    .preloader{
+      background: white url(img/preloader.gif) no-repeat center;
+      background-size: 30%;
+      height: 100vh;
+      position: fixed;
+      width: 100%;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body class="bg-orange-500 font-normal box-border">
+  <!-- PRE LOADER -->
+  <!-- <div class="preloader"></div> -->
+  <!--  -->
+  <section class="min-h-screen flex justify-center items-center">
+    <div class="flex flex-col justify-center items-center gap-2 md:gap-8 md:flex-row m-4 md:m-0">
+      <article class="w-72 md:w-1/2 text-center items-center p-4 md:border-r-2 border-white md:pr-8">
+        <h1 class="text-white mb-6"><span class="text-2xl font-bold tracking-wide">WELCOME</span><br><span class="text-1xl">TO</span><br><span class="text-4xl md:text-5xl font-bold tracking-widest">THERASPACE</span></h1>
+        <img src="img/logo-removebg-preview.png" alt="" class="md:w-72 mx-auto">
+      </article>    
+      <article class="w-72 md:w-96">
+        <div class="bg-white border rounded-md p-4 md:w-96">
+          <h1 class="text-center font-bold text-4xl my-6 md:my-12">Log <span class="text-orange-500">In</span></h1>
+          <label for="" class="text-[12px] my-4 w-full font-bold tracking-widest">Username: </label><br>
+          <input type="text" name="username" id="username" placeholder="Enter your username" class="text-1xl p-2 w-full border" required><br>
+          <label for="" class="text-[12px] my-4 w-full font-bold tracking-widest">Password: </label><br>
+          <input type="password" name="password" id="password" placeholder="Enter your password" class="text-1xl p-2 w-full border" required>
+          <div class="text-red-500 text-[11px]" id="passerr"></div>
+          <div class="flex justify-center items-center mt-6 text-center ">
+            <button id="login" class="bg-orange-500 text-white rounded-md px-4 py-2 mt-4 w-full">Log In</button>
+          </div>
+          <div class="text-center p-2 md:mb-12">
+            <p class="text-sm md:text-base">Don't have an account? <a href="signup" id="signUpLink" class="text-orange-500">Sign Up</a></p>
+          </div>             
+        </div>
+      </article>
+    </div>
+  </section>
+</body>
+<script>
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+          document.querySelector('.preloader').style.display = 'none';
+    }, 500);
+});
+</script>
+<script src="fetching.js"></script>
+</html>
