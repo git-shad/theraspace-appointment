@@ -109,10 +109,10 @@ if(appointment){
         const date = $('#dateInput').value;
         const fname = $('#firstname').value;
         const lname = $('#lastname').value;
-        const select = $('#selectedChild').value;
+        const chidname = $('#childname').value;
         const contact = $('#contact').value;
 
-        const data = {schedule_id,date,fname,lname,select,contact};
+        const data = {schedule_id,date,fname,lname,childname,contact};
 
         Swal.fire({
             title: "Do you want to proceed?",

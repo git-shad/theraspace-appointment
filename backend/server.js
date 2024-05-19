@@ -70,10 +70,10 @@ app.get('/dashboard/appointments', async (req,res) => {
 
 app.post('/dashboard/appointments',async (req,res)=>{
     if(whoAccess === 'user'){
-        const {schedule_id,date,fname,lname,select,contact} = req.body; 
+        const {schedule_id,date,fname,lname,childname,contact} = req.body; 
         try{
             const conn = await pool.getConnection();
-            await conn.query(`INSERT INTO appointment (portal_id,schedule_id,date,firstname,lastname,nchild,contact) VALUES((SELECT portal_id from portal where username = ?),?,?,?,?,?,?)`,[req.session.user,parseInt(schedule_id),date,fname,lname,parseInt(select),contact]);
+            await conn.query(`INSERT INTO appointment (portal_id,schedule_id,date,firstname,lastname,childname,contact) VALUES((SELECT portal_id from portal where username = ?),?,?,?,?,?,?)`,[req.session.user,parseInt(schedule_id),date,fname,lname,childname,contact]);
             console.log('appointment recorded!');
             conn.end();
         }catch(error){
