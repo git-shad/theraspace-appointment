@@ -89,6 +89,7 @@ app.post('/dashboard/appointments',async (req,res)=>{
 
 app.get('/dashboard/schedule',async (req,res) => {
     const conn = await pool.getConnection();
+    
     if(whoAccess === 'user'){
         const user = await conn.query('SELECT email FROM portal WHERE username = ?',[req.session.user]);
         const schedule = await conn.query(`SELECT 
@@ -121,6 +122,20 @@ app.get('/dashboard/schedule',async (req,res) => {
     }else{
         res.redirect('/login')
     }
+});
+
+app.post('/dashboard/schedule',async(req,res) => {
+    const conn = await pool.getConnection();
+    
+    if(whoAccess === 'user'){
+        const {appointment_id} = req.body;
+        const appointment = await conn.query('SELECT portal_id,')
+    }else if(whoAccess === 'admin'){
+
+    }else{
+
+    }
+
 });
 
 app.get('/dashboard/account',(req,res) => {

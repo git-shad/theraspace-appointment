@@ -167,8 +167,18 @@ const view_appointment = $('#view_appointment');
 if(view_appointment){
     view_appointment.addEventListener('click',e => {
         e.preventDefault();
+        const appointment_id = $('#boxID').innerHTML;
         fetch('/dashboard/schedule',{
+            method: 'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({appointment_id})
+        })
+        .then(response => response.json())
+        .then(data => {
             
         })
+        .catch(error =>{
+            console.log(error);
+        });
     });
 }
