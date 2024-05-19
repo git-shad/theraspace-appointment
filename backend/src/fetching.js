@@ -104,6 +104,7 @@ if(appointment){
     console.log('confirm_appointment hayss')
     appointment.addEventListener('click',(e)=>{
         e.preventDefault();
+        
         const schedule_id = $('#boxID').innerHTML;
         const date = $('#dateInput').value;
         const fname = $('#firstname').value;
@@ -112,18 +113,36 @@ if(appointment){
         const contact = $('#contact').value;
 
         const data = {schedule_id,date,fname,lname,select,contact};
-        fetch('/dashboard/appointments',{
-            method:'POST',
-            headers:{
-                'Content-Type':'application/json'
-                },
-            body:JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(data => {
 
-        }).catch(error =>{
-            console.log(error);
-        })
+        Swal.fire({
+            title: "Do you want to proceed?",
+            text: 'Set Appointment',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: "Appointment Successfully!",
+                text: "Recorded",
+                icon: "success"
+            });
+            fetch('/dashboard/appointments',{
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                    },
+                body:JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+    
+            }).catch(error =>{
+                console.log(error);
+            });
+            }//end if
+        });        
     });
 }

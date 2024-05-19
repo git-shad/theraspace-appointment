@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS account(
     lastname VARCHAR(128),
     address VARCHAR(255),
     contact VARCHAR(11),
+    image VARCHAR(255),
     FOREIGN KEY (portal_id) REFERENCES portal(portal_id)
 );
 
@@ -36,7 +37,7 @@ CREATE TABLE IF NOT EXISTS appointment(
     date DATE,
     firstname VARCHAR(128),
     lastname VARCHAR(128),
-    nchild INT,
+    childname VARCHAR(128),
     contact VARCHAR(11),
     FOREIGN KEY (portal_id) REFERENCES portal(portal_id),
     FOREIGN KEY (schedule_id) REFERENCES schedule(schedule_id)

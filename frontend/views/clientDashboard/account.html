@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/src/output.css">
+  <link rel="stylesheet" href="/src/input.css">
+  <link rel="stylesheet" href="/ionicons.designerpack/.css">
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    .preloader{
+      background: white url(img/preloader.gif) no-repeat center;
+      background-size: 30%;
+      height: 100vh;
+      position: fixed;
+      width: 100%;
+      z-index: 100;
+    }
+
+    .active{
+      background-color: white;
+      margin: 0;
+      color: rgb(249 115 22 / var(--tw-bg-opacity));
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+    }
+
+    .active:hover{
+        opacity: 1;
+    }
+
+    /* Added transition for sidebar */
+    .sidebar {
+      transition: transform 0.3s ease;
+    }
+  </style>
+</head>
+<body class="bg-white min-h-screen">
+  <!-- PRE LOADER -->
+  <!-- <div class="preloader"></div> -->
+  <!--  -->
+  <!-- Sidebar with Toggle Button -->
+  <div class="fixed top-0 left-0 z-50 w-full p-2 bg-orange-500 md:bg-transparent flex items-center gap-4 justify-between">
+    <img src="img/logo-removebg-preview.png" alt="" class="w-10 h-10 md:hidden"><span class="text-white font-bold md:hidden tracking-widest">THERASPACE</span>
+    <button id="sidebarToggle" class="md:hidden text-white">
+      <ion-icon id="menuIcon" name="menu-outline" class="text-4xl"></ion-icon>
+    </button>
+  </div>
+  
+  <div id="sidebar" class="sidebar fixed bg-orange-500 w-full md:w-[250px] top-0 bottom-0 md:left-0 mt-8 md:mt-0 py-4 h-screen hidden md:block">
+    <div class="text-white text-xl flex flex-col h-full">
+      <div class="p-4 mt-1 text-center mx-auto flex flex-col items-center justify-center">
+        <img src="img/logo-removebg-preview.png" alt="" class="w-16 md:w-24">
+        <h1 class="font-bold text-white text-[20px] tracking-wider">Isaac Newton</h1>
+        <p class="text-sm italic">qwerty@gmail.com</p>
+      </div>
+      <hr class="border-t border-white my-4">
+      <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
+        <a href="clientdashboard.html" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
+          <ion-icon name="home-outline" class="pr-4 pl-4"></ion-icon> DASHBOARD
+        </a>
+      </div>
+      <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
+        <a href="appointment.html" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
+          <ion-icon name="calendar-outline" class="pr-4 pl-4 flex justify-center items-center text-center"></ion-icon> APPOINTMENT
+        </a>
+      </div>
+      <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
+        <a href="history.html" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
+          <ion-icon name="time-outline" class="pr-4 pl-4 flex justify-center items-center text-center"></ion-icon> HISTORY
+        </a>
+      </div>
+      <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
+        <a href="prescription.html" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
+          <ion-icon name="clipboard-outline" class="pr-4 pl-4"></ion-icon> PRESCRIPTION
+        </a>
+      </div>
+      <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
+        <a href="account.html" class="w-full flex justify-start items-center py-3 text-[15px] active">
+          <ion-icon name="person-outline" class="pr-4 pl-4"></ion-icon> ACCOUNT
+        </a>
+      </div>
+      <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1 md:my-auto">
+        <button onclick="confirmLogout()" class="w-full flex justify-start items-center py-1 text-[15px] hover:opacity-60 hover:duration-200">
+          <ion-icon name="log-out-outline" class="pr-4 pl-4"></ion-icon> LOG OUT
+        </button>
+      </div> 
+    </div>
+  </div>
+  <!-- Page Content -->
+  <div class="md:fixed md:ml-[250px] mt-16 md:mt-2 w-full">
+    <div class="md:ml-6 my-6 w-full">
+      <h1 class="md:ml-4 pt-4 text-[30px] md:text-4xl text-orange-500 font-bold tracking-widest text-center md:text-start">ACCOUNT DETAILS</h1>
+    </div>
+    <hr class="border-t-4 border-orange-500">
+
+    <div class="gap-4 md:mt-8">
+
+      <div class="md:ml-6 md:w-[80%] m-2 md:m-0 ">
+        <h1 class="text-black font-bold text-[12px] mb-4 text-center md:text-start">ACCOUNT INFORMATION:</h1>
+        <div id="boxes" class="bg-slate-200 w-full p-8 rounded-md relative">
+          <div class="flex flex-col justify-center md:flex-row bg-white rounded-md p-12 gap-16">
+            <div class="flex justify-center md:h-48">
+                <img src="img/logo-removebg-preview.png" alt="" class="w-28 md:w-48">
+            </div>
+            <div class="">
+              <table class="">
+                <tr>
+                  <th class="text-start font-bold text-[14px] pr-8">Firstname:</th>
+                  <th class="text-start font-bold text-[14px]">Lastname:</th>
+                </tr>
+                <tr>
+                  <td class="text-start md:text-[24px]">Isaac</td>
+                  <td class="text-start md:text-[24px]">Newton</td>
+                </tr>
+              </table>
+              <table class="mt-6">
+                <tr>
+                  <th class="text-start font-bold text-[14px] pr-8">Email:</th>
+                </tr>
+                <tr>
+                  <td class="text-start md:text-[24px]"><i>qwerty@gmail.com</i></td>
+                </tr>
+              </table>
+              <table class="mt-6">
+                <tr>
+                  <th class="text-start font-bold text-[14px] pr-8">Address:</th>
+                </tr>
+                <tr>
+                  <td class="text-start md:text-[24px]">Impig Sipocot Camarines Sur</td>
+                </tr>
+              </table>
+              <table class="mt-6">
+                <tr>
+                  <th class="text-start font-bold text-[14px] pr-8">Contact:</th>
+                </tr>
+                <tr>
+                  <td class="text-start md:text-[24px]">0912345678</td>
+                </tr>
+              </table>
+            </div>
+            <!-- Position the button -->
+            <div class="md:absolute bottom-10 right-6 text-end mt-2 md:mr-4 md:mt-0">
+              <button id="appointmentBtn" class="p-4 md:p-2 bg-orange-500 text-white font-semibold rounded-md">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+              </button>
+            </div>
+
+          </div>
+
+
+              
+        </div> <!-- -->
+      </div><!-- -->
+
+        
+    </div>  
+  </div>
+
+  <!-- Appointment Button -->
+  <div id="popupBackdrop" class="fixed inset-0 hidden bg-black bg-opacity-50 shadow-lg">
+    <section class="fixed top-0 left-0 flex items-center justify-center w-full h-full hidden" id="section">
+      <div class="bg-white border border-orange-500 p-12 m-4 md:m-0 rounded-md items-center relative md:w-80">
+        <div class="absolute top-0 right-0 p-2">
+          <button id="cancelButton" class="text-orange-500 hover:rotate-180 focus:outline-none transform transition duration-300 ease-in-out">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x w-6 h-6">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="15" y1="9" x2="9" y2="15"></line>
+              <line x1="9" y1="9" x2="15" y2="15"></line>
+            </svg>
+          </button>
+        </div>
+        <h1 class="text-orange-500 font-extrabold text-center text-[10px] tracking-widest mb-4">ACCOUNT INFORMATION:</h1>
+
+        <input type="text" id="fname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Firstname" required>
+
+        <input type="text" id="lname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Lastname" required>
+
+        <input type="email" id="lname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Email" required>
+  
+        <input type="text" id="address" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Address" required>
+
+        <input type="number" id="contact" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Contact" required>
+
+        <label for="" class="block mb-2 font-bold text-[12px] text-orange-500">Upload Image:</label>
+        <input type="file" id="image" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2 text-[12px]" required>
+
+        <button id="updateInfo" class="flex items-center text-[12px] mt-4 w-full text-center border py-[6px] bg-orange-500 text-white rounded-lg hover:opacity-75 duration-300 ease-in-out">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-pen-line ml-8 mr-4"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-.5"/><path d="M16 4h2a2 2 0 0 1 1.73 1"/><path d="M8 18h1"/><path d="M18.4 9.6a2 2 0 0 1 3 3L17 17l-4 1 1-4Z"/></svg>
+          Update Account
+        </button>
+
+      </div>
+    </section>
+  </div>
+  
+  <!--  -->
+  
+
+<!-- Script to toggle sidebar and change menu icon -->
+<script>
+
+const sidebarToggle = document.getElementById('sidebarToggle');
+const menuIcon = document.getElementById('menuIcon');
+const sidebar = document.getElementById('sidebar');
+const boxes = document.getElementById('boxes'); // Get the boxes div
+
+sidebarToggle.addEventListener('click', function() {
+  sidebar.classList.toggle('hidden');
+  boxes.classList.toggle('hidden'); // Toggle the hidden class for the boxes div
+  if (sidebar.classList.contains('hidden')) {
+    menuIcon.setAttribute('name', 'menu-outline');
+  } else {
+    menuIcon.setAttribute('name', 'close-outline');
+  }
+});
+
+
+const section = document.getElementById('section');
+const cancelButton = document.getElementById('cancelButton');
+const appointmentBtns = document.querySelectorAll('#appointmentBtn');
+const popupBackdrop = document.getElementById('popupBackdrop');
+
+appointmentBtns.forEach(function(appointmentBtn) {
+    appointmentBtn.addEventListener('click', function() {
+    section.classList.remove('hidden');
+    popupBackdrop.classList.remove('hidden');
+
+    // Calculate the center position of the screen
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    const sectionWidth = section.offsetWidth;
+    const sectionHeight = section.offsetHeight;
+
+    const topPosition = (windowHeight - sectionHeight) / 2;
+    const leftPosition = (windowWidth - sectionWidth) / 2;
+
+    // Set the top and left positions
+    section.style.top = `${topPosition}px`;
+    section.style.left = `${leftPosition}px`;
+  });
+});
+
+cancelButton.addEventListener('click', function() {
+  section.classList.add('hidden');
+  popupBackdrop.classList.add('hidden');
+});
+
+// Edit Info
+document.getElementById('updateInfo').addEventListener('click', function() {
+  Swal.fire({
+      title: "Updated Successfully!",
+      text: "Welcome!",
+      icon: "success"
+  });
+});
+
+// Calendar Date
+const dateInput = document.getElementById('dateInput');
+const currentDate = new Date();
+const formattedDate = currentDate.toISOString().slice(0,10);
+dateInput.value = formattedDate;
+
+
+  </script>
+</body>
+<script src="index.js"></script>
+</html>
