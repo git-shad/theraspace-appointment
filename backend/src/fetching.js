@@ -162,5 +162,3 @@ if(confirm_appointment){
         });        
     });
 }
-
-const 
