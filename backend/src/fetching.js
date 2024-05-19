@@ -6,6 +6,23 @@ function changeID(id){
     document.querySelector('#boxID').innerHTML = id;
 }
 
+function confirmLogout() {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will be logged out',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, log me out!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Perform logout action here, e.g., redirect to logout page
+        window.location.href = 'logout';
+      }
+    });
+  }
+
 const login = $('#login');
 if(login){
     login.addEventListener('click',(e)=>{
@@ -109,7 +126,7 @@ if(appointment){
         const date = $('#dateInput').value;
         const fname = $('#firstname').value;
         const lname = $('#lastname').value;
-        const chidname = $('#childname').value;
+        const childname = $('#childname').value;
         const contact = $('#contact').value;
 
         const data = {schedule_id,date,fname,lname,childname,contact};

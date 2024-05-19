@@ -156,18 +156,18 @@
         <h1 class="text-orange-500 font-extrabold text-center text-[10px] tracking-widest mb-4">SET APPOINTMENT:</h1>
         <label for="fullname" class="block mb-2 font-bold text-[12px] text-orange-500">GUARDIAN:</label>
 
-        <input type="text" id="fullname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Firstname" required>
+        <input type="text" id="firstname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Firstname" required>
 
-        <input type="text" id="fullname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Lastname" required>
+        <input type="text" id="lastname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Lastname" required>
   
         <label for="childname" class="block mb-2 font-bold text-[12px] text-orange-500">Children:</label>
         <input type="text" id="childname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Childname" required>
   
         <label for="" class="block mb-2 font-bold text-[12px] text-orange-500">Contact:</label>
-        <input type="number" id="age" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="09123456789" required>
+        <input type="text" id="contact" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="09123456789" required>
   
         <div class="flex items-center justify-center font-semibold tracking-widest text-center p-2 rounded-md bg-orange-500 text-white mt-8">
-          <button id="confirmButton" class="text-[12px] flex items-center mx-4">Confirm
+          <button id="confirm_appointment" class="text-[12px] flex items-center mx-4">Confirm
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check mx-4"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
           </button>
         </div>
@@ -231,24 +231,6 @@ const dateInput = document.getElementById('dateInput');
 const currentDate = new Date();
 const formattedDate = currentDate.toISOString().slice(0,10);
 dateInput.value = formattedDate;
-
-  // Function to show logout confirmation
-  function confirmLogout() {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'You will be logged out',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, log me out!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // Perform logout action here, e.g., redirect to logout page
-        window.location.href = 'logout';
-      }
-    });
-  }
 </script>
 </body>
 <script src="index.js"></script>
