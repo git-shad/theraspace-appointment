@@ -176,9 +176,9 @@ if (view_appointment) {
     view_appointment.forEach((view)=>{
         view.addEventListener('click', (e) => {
             e.preventDefault();
-            const appointmentId = $('#boxID').innerHTML;
+            const id = $('#boxID').innerHTML;
             
-            fetch(`/dashboard/schedule/${appointmentId}`, {
+            fetch(`/dashboard/schedule/${id}`, {
                 method: 'PUT',
                 headers: {'Content-Type': 'application/json'}
             })
@@ -201,31 +201,57 @@ if (view_appointment) {
 }
 
 
-const editinfo = $('editinfo');
+const editinfo = $$('#editinfo');
 if (editinfo) {
-    editinfo.addEventListener('click',(e)=>{
-        e.preventDefault();
-        const appnum = $('#appnum').value;
-        const firstname = $('#firstname').value;
-        const lastname = $('#lastname').value;
-        const childname = $('#childname').value;
-        const contact = $('#contact').value;
+    editinfo.forEach(editinfo => {
+        editinfo.addEventListener('click',(e)=>{
+            e.preventDefault();
+            const id = $('#boxID').innerHTML;
+            const firstname = $('#firstname').value;
+            const lastname = $('#lastname').value;
+            const childname = $('#childname').value;
+            const contact = $('#contact').value;
+    
+            const data = { firstname,lastname,childname,contact };
+            
+            fetch(`/dashboard/schedule/${id}/edit`,{
+                method: 'PUT',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
 
-        const data = { firstname,lastname,childname,contact };
-        
-        fetch(`/dashboard/schedule/${appnum}`,{
-            method: 'PUT',
-            headers: {'Content-Type':'application/json'},
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(data => {})
-        .catch(error => {
-            console.log(error);
-        })
-    });
+            })
+            .catch(error => {
+                console.log(error);
+            })
+        });
+    })
 }
 
+const cancel = $$('#delapp');
+if (cancel) {
+    cancel.forEach(cancel => {
+        cancel.addEventListener('click',(e)=>{
+            e.preventDefault();
+            const id = $('#boxID').innerHTML;
+            console.log('nako');
+
+            fetch(`/dashboard/schedule/${id}/delete`,{
+                method: 'PUT'
+            })
+            .then(response => response.json())
+            .then(data => {
+                window.location.href = '/dashboard/schedule';
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    
+        });
+    })
+}
 /*
     END  schedule
 */

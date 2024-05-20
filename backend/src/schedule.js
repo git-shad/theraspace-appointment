@@ -5,7 +5,7 @@ const schedule = (app,pool)=>{
         if(global.whoAccess === 'user'){
             const user = await conn.query('SELECT email FROM portal WHERE username = ?',[req.session.user]);
             const schedule = await conn.query(`SELECT 
-                                                        appointment.appointment_id AS id,
+                                                        appointment.appointment_id AS app_id,
                                                         DATE_FORMAT(appointment.date, "%m/%d/%Y") AS date, 
                                                         DATE_FORMAT(schedule.time_s, "%h:%i%p") AS stime, 
                                                         DATE_FORMAT(schedule.time_e, "%h:%i%p") AS etime 
@@ -17,7 +17,7 @@ const schedule = (app,pool)=>{
             let schedules = [];
             schedule.forEach(row => {
                 let schedule = {
-                    id: row.id,
+                    id: row.app_id,
                     date: row.date,
                     time: `${row.stime} - ${row.etime}`.toLowerCase()
                 };
@@ -36,12 +36,12 @@ const schedule = (app,pool)=>{
         }
     });
     
-    app.put('/dashboard/schedule/:appointment_id',async (req,res) => {
+    app.put('/dashboard/schedule/:id',async (req,res) => {
         const conn = await pool.getConnection();
         
         if(global.whoAccess === 'user'){
-            const {appointment_id} = req.params;
-            const appointment = await conn.query('SELECT appointment_id,firstname,lastname,childname,contact FROM appointment JOIN schedule ON appointment.schedule_id = schedule.schedule_id WHERE portal_id IN(SELECT portal_id FROM portal WHERE username = ?) AND appointment_id = ?;',[req.session.user,appointment_id]);
+            
+            const appointment = await conn.query('SELECT appointment_id,firstname,lastname,childname,contact FROM appointment JOIN schedule ON appointment.schedule_id = schedule.schedule_id WHERE portal_id IN(SELECT portal_id FROM portal WHERE username = ?) AND appointment_id = ?;',[req.session.user,req.params.id]);
             
             res.json(appointment[0]);
             
@@ -54,14 +54,19 @@ const schedule = (app,pool)=>{
     
     });
 
-    app.put('/dashboard/schedule/:appointment_id',async (req,res)=>{
+    app.put('/dashboard/schedule/:id/edit',async (req,res)=>{
         const conn = await pool.getConnection();
         
         if(global.whoAccess === 'user'){
             const { firstname,lastname,childname,contact } = req.body;
-            const { appointment_id } = req.params;
+            const { id } = req.params;
+            const result = await conn.query('UPDATE appointment SET firstname=?,lastname=?,childname=?,contact=? WHERE portal_id IN(SELECT portal_id FROM portal WHERE username = ?) AND appointment_id = ?',[firstname,lastname,childname,contact,req.session.user,id]);
 
-            
+            if(result.affectedRows > 0){
+                // updated
+            }else{
+                // not updated
+            }
         }else if(global.whoAccess === 'admin'){
     
         }else{
@@ -69,6 +74,26 @@ const schedule = (app,pool)=>{
         }
         conn.end();
     });
+
+    app.put('/dashboard/schedule/:id/delete',async (req,res)=>{
+        const conn = await pool.getConnection();
+        
+        if(global.whoAccess === 'user'){
+            const { id } = req.params;
+            const result = await conn.query('DELETE FROM appointment WHERE portal_id IN(SELECT portal_id FROM portal WHERE username = ?) AND appointment_id = ?',[req.session.user,id]);
+            
+            if(result.affectedRows > 0){
+                // deleted
+            }else{
+                // not deleted
+            }
+        }else if(global.whoAccess === 'admin'){
+    
+        }else{
+    
+        }
+        conn.end();
+    })
 }
 
 module.exports = {schedule};

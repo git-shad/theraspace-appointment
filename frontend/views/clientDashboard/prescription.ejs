@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prescription<title>
+  <title>Prescription</title>
   <link rel="icon" href="img/logo-removebg-preview.png">
   <link rel="stylesheet" href="design.css">
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -223,13 +223,9 @@ deleteBtn.addEventListener('click', function(){
     });
 })
 
-// Calendar Date
-const dateInput = document.getElementById('dateInput');
-const currentDate = new Date();
-const formattedDate = currentDate.toISOString().slice(0,10);
-dateInput.value = formattedDate;
 
   </script>
 </body>
 <script src="index.js"></script>
+<script src="fetching.js"></script>
 </html>
