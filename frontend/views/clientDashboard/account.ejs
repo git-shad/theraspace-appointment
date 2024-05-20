@@ -48,30 +48,40 @@
   </div>
   
   <div id="sidebar" class="sidebar fixed bg-orange-500 w-full md:w-[250px] top-0 bottom-0 md:left-0 mt-8 md:mt-0 py-4 h-screen hidden md:block">
-    <div class="text-white text-xl flex flex-col justify-between h-full">
+    <div class="text-white text-xl flex flex-col h-full">
       <div class="p-4 mt-1 text-center mx-auto flex flex-col items-center justify-center">
-        <img src="img/logo-removebg-preview.png" alt="" class="w-24">
+        <img src="img/logo-removebg-preview.png" alt="" class="w-16 md:w-24">
         <h1 class="font-bold text-white text-[20px] tracking-wider">Isaac Newton</h1>
         <p class="text-sm italic">qwerty@gmail.com</p>
       </div>
       <hr class="border-t border-white my-4">
-      <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-4">
-        <a href="appointments" class="w-full flex justify-start items-center py-2 text-[15px] hover:opacity-60 hover:duration-200">
-          <ion-icon name="home-outline" class="pr-4 pl-4"></ion-icon> DASHBOARD
+      <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1 mt-2">
+        <a href="appointments" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
+          <ion-icon name="home-outline" class="pr-4 pl-4"></ion-icon> APPOINTMENTS
         </a>
       </div>
-      <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-4">
-        <a href="schedule" class="w-full flex justify-start items-center py-2 text-[15px] hover:opacity-60 hover:duration-200">
-          <ion-icon name="calendar-outline" class="pr-4 pl-4"></ion-icon> APPOINTMENT
+      <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
+        <a href="schedule" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
+          <ion-icon name="calendar-outline" class="pr-4 pl-4 flex justify-center items-center text-center"></ion-icon> SCHEDULE
         </a>
       </div>
-      <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-4">
-        <a href="account" class="w-full flex justify-start items-center py-2 text-[15px] active">
-          <ion-icon name="person-outline" class="pr-4 pl-4"></ion-icon> UPDATE ACCOUNT
+      <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
+        <a href="history" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
+          <ion-icon name="time-outline" class="pr-4 pl-4 flex justify-center items-center text-center"></ion-icon> HISTORY
         </a>
       </div>
-      <div class="text-center cursor-pointer text-xl font-bold pl-2 mt-auto mb-4">
-        <button class="w-full flex justify-start items-center py-2 text-[15px] hover:opacity-60 hover:duration-200">
+      <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
+        <a href="prescription" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
+          <ion-icon name="clipboard-outline" class="pr-4 pl-4"></ion-icon> PRESCRIPTION
+        </a>
+      </div>
+      <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
+        <a href="account" class="w-full flex justify-start items-center py-3 text-[15px] active">
+          <ion-icon name="person-outline" class="pr-4 pl-4"></ion-icon> ACCOUNT
+        </a>
+      </div>
+      <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1 md:my-auto">
+        <button onclick="confirmLogout()" class="w-full flex justify-start items-center py-1 text-[15px] hover:opacity-60 hover:duration-200">
           <ion-icon name="log-out-outline" class="pr-4 pl-4"></ion-icon> LOG OUT
         </button>
       </div> 
@@ -87,7 +97,7 @@
     <div class="gap-4 md:mt-8">
 
       <div class="md:ml-6 md:w-[80%] m-2 md:m-0 ">
-        <h1 class="text-black font-bold text-[12px] mb-4 text-center md:text-start">ACCOUNT INFORMATION:</h1>
+        <h1 class="text-black font-bold text-[12px] mb-4 text-center md:text-start mt-4 md:mt-0">ACCOUNT INFORMATION:</h1>
         <div id="boxes" class="bg-slate-200 w-full p-8 rounded-md relative">
           <div class="flex flex-col justify-center md:flex-row bg-white rounded-md p-12 gap-16">
             <div class="flex justify-center md:h-48">
