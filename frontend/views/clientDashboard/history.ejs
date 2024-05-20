@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="design.css">
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     .preloader{
       background: white url(img/preloader.gif) no-repeat center;
@@ -53,27 +54,27 @@
       </div>
       <hr class="border-t border-white my-4">
       <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
-        <a href="clientdashboard.html" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
-          <ion-icon name="home-outline" class="pr-4 pl-4"></ion-icon> DASHBOARD
+        <a href="appointments" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
+          <ion-icon name="home-outline" class="pr-4 pl-4"></ion-icon> APPOINTMENTS
         </a>
       </div>
       <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
-        <a href="appointment.html" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
-          <ion-icon name="calendar-outline" class="pr-4 pl-4 flex justify-center items-center text-center"></ion-icon> APPOINTMENT
+        <a href="schedule" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
+          <ion-icon name="calendar-outline" class="pr-4 pl-4 flex justify-center items-center text-center"></ion-icon> SCHEDULE
         </a>
       </div>
       <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
-        <a href="history.html" class="w-full flex justify-start items-center py-3 text-[15px] active">
+        <a href="history" class="w-full flex justify-start items-center py-3 text-[15px] active">
           <ion-icon name="time-outline" class="pr-4 pl-4 flex justify-center items-center text-center"></ion-icon> HISTORY
         </a>
       </div>
       <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
-        <a href="prescription.html" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
+        <a href="prescription" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
           <ion-icon name="clipboard-outline" class="pr-4 pl-4"></ion-icon> PRESCRIPTION
         </a>
       </div>
       <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
-        <a href="account.html" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
+        <a href="account" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
           <ion-icon name="person-outline" class="pr-4 pl-4"></ion-icon> ACCOUNT
         </a>
       </div>
@@ -208,12 +209,6 @@ cancelButton.addEventListener('click', function() {
   section.classList.add('hidden');
   popupBackdrop.classList.add('hidden');
 });
-
-// Calendar Date
-const dateInput = document.getElementById('dateInput');
-const currentDate = new Date();
-const formattedDate = currentDate.toISOString().slice(0,10);
-dateInput.value = formattedDate;
 
   </script>
 </body>
