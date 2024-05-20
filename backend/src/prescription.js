@@ -1,5 +1,6 @@
 const prescription = (app,pool)=>{
-    app.get('/prescription',(req,res)=>{
+    app.get('/dashboard/prescription',(req,res)=>{
+        res.render('clientDashboard/prescription');
     });
 }
 
