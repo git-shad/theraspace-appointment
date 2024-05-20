@@ -162,3 +162,13 @@ if(confirm_appointment){
         });        
     });
 }
+
+const view_appointment = $('#view_appointment');
+if(view_appointment){
+    view_appointment.addEventListener('click',e => {
+        e.preventDefault();
+        fetch('/dashboard/schedule',{
+            
+        })
+    });
+}
