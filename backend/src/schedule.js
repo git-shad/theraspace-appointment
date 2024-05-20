@@ -53,6 +53,22 @@ const schedule = (app,pool)=>{
         conn.end();
     
     });
+
+    app.put('/dashboard/schedule/:appointment_id',async (req,res)=>{
+        const conn = await pool.getConnection();
+        
+        if(global.whoAccess === 'user'){
+            const { firstname,lastname,childname,contact } = req.body;
+            const { appointment_id } = req.params;
+
+            
+        }else if(global.whoAccess === 'admin'){
+    
+        }else{
+    
+        }
+        conn.end();
+    });
 }
 
 module.exports = {schedule};

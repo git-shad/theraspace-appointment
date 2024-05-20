@@ -205,11 +205,24 @@ const editinfo = $('editinfo');
 if (editinfo) {
     editinfo.addEventListener('click',(e)=>{
         e.preventDefault();
-        $('#appnum').value = data.appointment_id;
-                    $('#firstname').value = data.firstname;
-                    $('#lastname').value = data.lastname;
-                    $('#childname').value = data.childname;
-                    $('#contact').value = data.contact;
+        const appnum = $('#appnum').value;
+        const firstname = $('#firstname').value;
+        const lastname = $('#lastname').value;
+        const childname = $('#childname').value;
+        const contact = $('#contact').value;
+
+        const data = { firstname,lastname,childname,contact };
+        
+        fetch(`/dashboard/schedule/${appnum}`,{
+            method: 'PUT',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {})
+        .catch(error => {
+            console.log(error);
+        })
     });
 }
 
