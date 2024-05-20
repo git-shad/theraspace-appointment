@@ -124,23 +124,21 @@ app.get('/dashboard/schedule',async (req,res) => {
     }
 });
 
-app.get('/dashboard/schedule',async(req,res) => {
+app.put('/dashboard/schedule/:appointment_id',async (req,res) => {
     const conn = await pool.getConnection();
     
     if(whoAccess === 'user'){
-        const {appointment_id} = req.body;
+        const {appointment_id} = req.params;
         const appointment = await conn.query('SELECT portal_id,firstname,lastname,childname,contact FROM appointment JOIN schedule ON appointment.schedule_id = schedule.schedule_id WHERE portal_id IN(SELECT portal_id FROM portal WHERE username = ?) AND appointment_id = ?;',[req.session.user,appointment_id]);
-
         
-        res.render('clientDashboard/schedule',{
-            appointment: 'heyy'
-        })
+        
         
     }else if(whoAccess === 'admin'){
 
     }else{
 
     }
+    conn.end();
 
 });
 

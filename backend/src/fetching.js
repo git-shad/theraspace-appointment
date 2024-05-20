@@ -164,28 +164,23 @@ if(confirm_appointment){
 }
 
 const view_appointment = $('#view_appointment');
-if(view_appointment){
-    view_appointment.addEventListener('click',e => {
+if (view_appointment) {
+    view_appointment.addEventListener('click', e => {
         e.preventDefault();
-        const appointment_id = $('#boxID').innerHTML;
+        const appointmentId = $('#boxID').innerHTML;
 
-        fetch(`/dashboard/schedule?appointment_id=${appointment_id}`,{
-            method: 'GET',
-            headers:{
-                'Content-Type':'application/json'
-            }
+        fetch(`/dashboard/schedule/${appointmentId}`, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'}
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            response.json()
-        })
-        .then(data => {
-            console.log(date.appointment)
-        })
-        .catch(error =>{
-            console.log(error);
-        });
+           .then(response => response.json())
+           .then(data => {
+                if (date) {
+                    console.log(date.test);
+                }
+            })
+           .catch(error => {
+                console.log(error);
+            });
     });
 }
