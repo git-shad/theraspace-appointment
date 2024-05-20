@@ -129,9 +129,9 @@ app.put('/dashboard/schedule/:appointment_id',async (req,res) => {
     
     if(whoAccess === 'user'){
         const {appointment_id} = req.params;
-        const appointment = await conn.query('SELECT portal_id,firstname,lastname,childname,contact FROM appointment JOIN schedule ON appointment.schedule_id = schedule.schedule_id WHERE portal_id IN(SELECT portal_id FROM portal WHERE username = ?) AND appointment_id = ?;',[req.session.user,appointment_id]);
+        const appointment = await conn.query('SELECT appointment_id,firstname,lastname,childname,contact FROM appointment JOIN schedule ON appointment.schedule_id = schedule.schedule_id WHERE portal_id IN(SELECT portal_id FROM portal WHERE username = ?) AND appointment_id = ?;',[req.session.user,appointment_id]);
         
-        
+        res.json(appointment[0]);
         
     }else if(whoAccess === 'admin'){
 

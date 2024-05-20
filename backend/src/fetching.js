@@ -173,14 +173,18 @@ if (view_appointment) {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'}
         })
-           .then(response => response.json())
-           .then(data => {
-                if (date) {
-                    console.log(date.test);
-                }
-            })
-           .catch(error => {
-                console.log(error);
-            });
+        .then(response => response.json())
+        .then(data => {
+            if(data){
+                $('#appnum').value = data.appointment_id;
+                $('#firstname').value = data.firstname;
+                $('#lastname').value = data.lastname;
+                $('#childname').value = data.childname;
+                $('#contact').value = data.contact;
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
     });
 }
