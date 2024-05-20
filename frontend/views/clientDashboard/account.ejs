@@ -56,28 +56,28 @@
         <p class="text-sm italic">qwerty@gmail.com</p>
       </div>
       <hr class="border-t border-white my-4">
-      <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1 mt-2">
-        <a href="appointments" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
-          <ion-icon name="home-outline" class="pr-4 pl-4"></ion-icon> APPOINTMENTS
+      <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
+        <a href="clientdashboard.html" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
+          <ion-icon name="home-outline" class="pr-4 pl-4"></ion-icon> DASHBOARD
         </a>
       </div>
       <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
-        <a href="schedule" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
-          <ion-icon name="calendar-outline" class="pr-4 pl-4 flex justify-center items-center text-center"></ion-icon> SCHEDULE
+        <a href="appointment.html" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
+          <ion-icon name="calendar-outline" class="pr-4 pl-4 flex justify-center items-center text-center"></ion-icon> APPOINTMENT
         </a>
       </div>
       <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
-        <a href="history" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
+        <a href="history.html" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
           <ion-icon name="time-outline" class="pr-4 pl-4 flex justify-center items-center text-center"></ion-icon> HISTORY
         </a>
       </div>
       <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
-        <a href="prescription" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
+        <a href="prescription.html" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
           <ion-icon name="clipboard-outline" class="pr-4 pl-4"></ion-icon> PRESCRIPTION
         </a>
       </div>
       <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
-        <a href="account" class="w-full flex justify-start items-center py-3 text-[15px] active">
+        <a href="account.html" class="w-full flex justify-start items-center py-3 text-[15px] active">
           <ion-icon name="person-outline" class="pr-4 pl-4"></ion-icon> ACCOUNT
         </a>
       </div>
@@ -98,48 +98,45 @@
     <div class="gap-4 md:mt-8">
 
       <div class="md:ml-6 md:w-[80%] m-2 md:m-0 ">
-        <h1 class="text-black font-bold text-[12px] mb-4 text-center md:text-start mt-4 md:mt-0">ACCOUNT INFORMATION:</h1>
-        <div id="boxes" class="bg-slate-200 p-8 rounded-md relative">
-          <div class="bg-white rounded-md p-12">
-            <div class="flex flex-col justify-center md:flex-row">
-              <div class="flex justify-center items-center gap-4">
-                <img src="img/logo-removebg-preview.png" alt="" class="w-28">
-                <div>
-                  <h1 class="text-[18px]">Isaac Newton</h1>
-                  <h3 class="text-[18px]"><i>qwerty@gmail.com</i></h3>
-                </div>
-              </div>
+        <h1 class="text-black font-bold text-[12px] mb-4 text-center md:text-start">ACCOUNT INFORMATION:</h1>
+        <div id="boxes" class="bg-slate-200 w-full p-8 rounded-md relative">
+          <div class="flex flex-col justify-center md:flex-row bg-white rounded-md p-12 gap-16">
+            <div class="flex justify-center md:h-48">
+                <img src="img/logo-removebg-preview.png" alt="" class="w-28 md:w-48">
             </div>
-            <hr class="border-t border-black my-4">
-            <div class="flex justify-center items-start mb-4">
-              <table class="w-full md:w-1/2 text-start">
+            <div class="">
+              <table class="">
                 <tr>
-                  <th class="text-start">Firstname: </th>
-                  <th class="text-start">Lastname: </th>
+                  <th class="text-start font-bold text-[14px] pr-8">Firstname:</th>
+                  <th class="text-start font-bold text-[14px]">Lastname:</th>
                 </tr>
                 <tr>
-                  <td>Isaac</td>
-                  <td>Newton</td>
+                  <td class="text-start md:text-[24px]">Isaac</td>
+                  <td class="text-start md:text-[24px]">Newton</td>
                 </tr>
               </table>
-            </div>
-            <div class="flex justify-center items-start mb-4">
-              <table class="w-full md:w-1/2 text-start">
+              <table class="mt-6">
                 <tr>
-                  <th class="text-start">Address:</th>
+                  <th class="text-start font-bold text-[14px] pr-8">Email:</th>
                 </tr>
                 <tr>
-                  <td>Impig, Sipocot Camarines Sur</td>
+                  <td class="text-start md:text-[24px]"><i>qwerty@gmail.com</i></td>
                 </tr>
               </table>
-            </div>
-            <div class="flex justify-center items-start">
-              <table class="w-full md:w-1/2 text-start">
+              <table class="mt-6">
                 <tr>
-                  <th class="text-start">Contact:</th>
+                  <th class="text-start font-bold text-[14px] pr-8">Address:</th>
                 </tr>
                 <tr>
-                  <td>0912345678</td>
+                  <td class="text-start md:text-[24px]">Impig Sipocot Camarines Sur</td>
+                </tr>
+              </table>
+              <table class="mt-6">
+                <tr>
+                  <th class="text-start font-bold text-[14px] pr-8">Contact:</th>
+                </tr>
+                <tr>
+                  <td class="text-start md:text-[24px]">0912345678</td>
                 </tr>
               </table>
             </div>
@@ -175,29 +172,24 @@
           </button>
         </div>
         <h1 class="text-orange-500 font-extrabold text-center text-[10px] tracking-widest mb-4">ACCOUNT INFORMATION:</h1>
-        <label for="fullname" class="block mb-2 font-bold text-[12px] text-orange-500">Firstname:</label>
-        <input type="text" id="fname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2">
 
-        <label for="fullname" class="block mb-2 font-bold text-[12px] text-orange-500">Lastname:</label>
-        <input type="text" id="lname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2">
+        <input type="text" id="fname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Firstname" required>
 
-        <label for="fullname" class="block mb-2 font-bold text-[12px] text-orange-500">Email:</label>
-        <input type="email" id="lname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2">
+        <input type="text" id="lname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Lastname" required>
+
+        <input type="email" id="lname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Email" required>
   
-        <label for="" class="block mb-2 font-bold text-[12px] text-orange-500">Address:</label>
-        <input type="text" id="address" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2">
+        <input type="text" id="address" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Address" required>
 
-        <label for="" class="block mb-2 font-bold text-[12px] text-orange-500">Contact:</label>
-        <input type="number" id="contact" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2">
+        <input type="number" id="contact" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Contact" required>
 
         <label for="" class="block mb-2 font-bold text-[12px] text-orange-500">Upload Image:</label>
-        <input type="file" id="image" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2 text-[12px]">
+        <input type="file" id="image" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2 text-[12px]" required>
 
-        <div class="mt-8 w-full text-center border py-[6px] bg-orange-500 text-white rounded-lg hover:opacity-75 duration-300 ease-in-out">
-          <button id="selectDate" class="flex items-center text-[12px]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-pen-line ml-8 mr-4"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-.5"/><path d="M16 4h2a2 2 0 0 1 1.73 1"/><path d="M8 18h1"/><path d="M18.4 9.6a2 2 0 0 1 3 3L17 17l-4 1 1-4Z"/></svg>Update Account
-          </button>
-        </div>
+        <button id="updateInfo" class="flex items-center text-[12px] mt-4 w-full text-center border py-[6px] bg-orange-500 text-white rounded-lg hover:opacity-75 duration-300 ease-in-out">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-pen-line ml-8 mr-4"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-.5"/><path d="M16 4h2a2 2 0 0 1 1.73 1"/><path d="M8 18h1"/><path d="M18.4 9.6a2 2 0 0 1 3 3L17 17l-4 1 1-4Z"/></svg>
+          Update Account
+        </button>
 
       </div>
     </section>
@@ -206,8 +198,9 @@
   <!--  -->
   
 
-  <!-- Script to toggle sidebar and change menu icon -->
-  <script>
+<!-- Script to toggle sidebar and change menu icon -->
+<script>
+
 const sidebarToggle = document.getElementById('sidebarToggle');
 const menuIcon = document.getElementById('menuIcon');
 const sidebar = document.getElementById('sidebar');
@@ -254,14 +247,23 @@ cancelButton.addEventListener('click', function() {
   popupBackdrop.classList.add('hidden');
 });
 
+// Edit Info
+document.getElementById('updateInfo').addEventListener('click', function() {
+  Swal.fire({
+      title: "Updated Successfully!",
+      text: "Welcome!",
+      icon: "success"
+  });
+});
+
 // Calendar Date
 const dateInput = document.getElementById('dateInput');
 const currentDate = new Date();
 const formattedDate = currentDate.toISOString().slice(0,10);
 dateInput.value = formattedDate;
 
+
   </script>
 </body>
 <script src="index.js"></script>
-<script src="fetching.js"></script>
 </html>
