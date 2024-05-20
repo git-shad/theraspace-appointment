@@ -124,7 +124,7 @@ app.get('/dashboard/schedule',async (req,res) => {
     }
 });
 
-app.get('/dashboard/schedule?view',async(req,res) => {
+app.get('/dashboard/schedule',async(req,res) => {
     const conn = await pool.getConnection();
     
     if(whoAccess === 'user'){
@@ -133,7 +133,7 @@ app.get('/dashboard/schedule?view',async(req,res) => {
 
         
         res.render('clientDashboard/schedule',{
-            
+            appointment: 'heyy'
         })
         
     }else if(whoAccess === 'admin'){
