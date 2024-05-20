@@ -1435,6 +1435,10 @@ video {
     margin-top: 2rem;
   }
 
+  .md\:mt-6 {
+    margin-top: 1.5rem;
+  }
+
   .md\:block {
     display: block;
   }
