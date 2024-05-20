@@ -12,6 +12,9 @@ const { prescription } = require('./src/prescription.js');
 
 const app = express();
 const pool = createPool(); 
+let dateTimeObject = new Date();
+console.log(`Date: ${dateTimeObject.toDateString()}`);
+console.log(`Time: ${dateTimeObject.toTimeString()}`);
 
 global.whoAccess = 'no-login';
 
@@ -104,9 +107,12 @@ app.get('/dashboard/logout', (req,res) => {
     });
 })
 
-app.post('/signup', async (req,res) => {
-    const {username, email, password} = req.body;
+app.post('/signup', async (req, res) => {
+    const { username, email, password } = req.body;
     try {
+        if (!username ||!email ||!password) {
+            throw new Error('All fields are required');
+        }
         const hash = await bcrypt.hash(password, 10);
         const conn = await pool.getConnection();
         await conn.query('INSERT INTO portal (username,email,password) VALUES (?,?,?)',[username, email, hash]);
@@ -115,9 +121,13 @@ app.post('/signup', async (req,res) => {
         conn.end();
     } catch (err) {
         console.log(err);
-        res.json({redirect: '/signup'})
+        if (err.message === 'All fields are required') {
+            res.json({error: 'All fields are required'});
+        } else {
+            res.json({redirect: '/signup'})
+        }
     }
-})
+});
 
 let port = process.env.PORT || 3000;
 app.listen(port, () => {
