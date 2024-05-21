@@ -255,18 +255,35 @@ if (cancel) {
         cancel.addEventListener('click',(e)=>{
             e.preventDefault();
             const id = $('#boxID').innerHTML;
-            console.log('nako');
+            Swal.fire({
+                title: "Do you want to proceed?",
+                text: 'Cancel Appointment',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                      title: "Successfully!",
+                      text: "Recorded",
+                      icon: "success"
+                });
+                fetch(`/dashboard/schedule/${id}/delete`,{
+                    method: 'PUT'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    window.location.href = '/dashboard/schedule';
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+                }
+            })
 
-            fetch(`/dashboard/schedule/${id}/delete`,{
-                method: 'PUT'
-            })
-            .then(response => response.json())
-            .then(data => {
-                window.location.href = '/dashboard/schedule';
-            })
-            .catch(error => {
-                console.log(error);
-            });
+            
     
         });
     })
