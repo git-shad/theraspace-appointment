@@ -279,3 +279,39 @@ if (cancel) {
 /*
     END  schedule
 */
+
+/*
+    START  schedule
+*/
+const view_history = $$('#view_history');
+if (view_history) {
+    view_history.forEach((view)=>{
+        view.addEventListener('click', (e) => {
+            e.preventDefault();
+            const id = $('#boxID').innerHTML;
+            
+            fetch(`/dashboard/schedule/${id}`, {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json'}
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data){
+                    $('#appnum').value = data.appointment_id;
+                    $('#firstname').value = data.firstname;
+                    $('#lastname').value = data.lastname;
+                    $('#childname').value = data.childname;
+                    $('#contact').value = data.contact;
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    
+        });
+    })
+}
+
+/*
+END  schedule
+*/

@@ -113,13 +113,13 @@
               
               <div>
                 <h6 class="text-[12px] font-semibold text-black">Schedule:</h6>
-                <h6 class="text-[14px] font-semibold text-black"><%= history.date %>></h6>
+                <h6 class="text-[14px] font-semibold text-black"><%= history.date %></h6>
                 <h2 class="font-semibold"><%= history.time %></h2>
               </div>
               
               <!-- Content for Box 1 -->
               <div class="mt-8 w-full text-center border py-[6px] bg-orange-500 text-white rounded-lg hover:opacity-75 duration-300 ease-in-out flex items-center justify-center">
-                <button id="appointmentBtn" onclick="changeID('<%= history.id %>')" class="flex items-center text-[12px]">
+                <button id="view_history" onclick="changeID('<%= history.id %>')" class="flex items-center text-[12px]">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-days mr-2"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>View Appointment
                 </button>
               </div>
@@ -152,14 +152,14 @@
         <input type="text"  id="appnum" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" readonly>
 
         <label for="fullname" class="block mb-2 font-bold text-[12px] text-orange-500">GUARDIAN:</label>
-        <input type="text" id="fullname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" readonly>
-        <input type="text" id="fullname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" readonly>
+        <input type="text" id="firstname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" readonly>
+        <input type="text" id="lastname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" readonly>
 
         <label for="childname" class="block mb-2 font-bold text-[12px] text-orange-500">Children:</label>
-        <input type="text" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" readonly>
+        <input type="text" id="childname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" readonly>
   
         <label for="" class="block mb-2 font-bold text-[12px] text-orange-500">Contact:</label>
-        <input type="number" id="age" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" readonly>
+        <input type="number" id="contact" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" readonly>
 
       </div>
     </section>
@@ -188,11 +188,11 @@ sidebarToggle.addEventListener('click', function() {
 
 const section = document.getElementById('section');
 const cancelButton = document.getElementById('cancelButton');
-const appointmentBtns = document.querySelectorAll('#appointmentBtn');
+const view_historys = document.querySelectorAll('#view_history');
 const popupBackdrop = document.getElementById('popupBackdrop');
 
-appointmentBtns.forEach(function(appointmentBtn) {
-    appointmentBtn.addEventListener('click', function() {
+view_historys.forEach(function(view_history) {
+    view_history.addEventListener('click', function() {
     section.classList.remove('hidden');
     popupBackdrop.classList.remove('hidden');
 
