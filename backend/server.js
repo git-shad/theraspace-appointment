@@ -8,6 +8,7 @@ const { createPool, role } = require('./src/db.js');
 const { appointments } = require('./src/appointments.js');
 const { schedule } = require('./src/schedule.js');
 const { history } = require('./src/history.js');
+const { prescription } = require('./src/prescription.js');
 
 const app = express();
 const pool = createPool(); 
@@ -32,6 +33,7 @@ app.use(session({
 appointments(app,pool);
 schedule(app,pool);
 history(app,pool);
+prescription(app,pool);
 
 app.get('/',(req,res)=>{
     res.redirect('/home')
