@@ -1,5 +1,7 @@
 const history = (app,pool) => {
+    
     app.get('/dashboard/history',async (req,res)=>{
+        const conn = await pool.getConnection();
         if(global.whoAccess === 'user'){
             const user = await conn.query('SELECT email FROM portal WHERE username =?', [req.session.user]);
             const history = await conn.query(`
