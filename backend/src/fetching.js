@@ -2,6 +2,10 @@ function $($){
     return document.querySelector($);
 }
 
+function $$($){
+    return document.querySelectorAll($);
+}
+
 function changeID(id){
     document.querySelector('#boxID').innerHTML = id;
 }
@@ -163,29 +167,31 @@ if(confirm_appointment){
     });
 }
 
-const view_appointment = $('#view_appointment');
-if(view_appointment){
-    view_appointment.addEventListener('click',e => {
-        e.preventDefault();
-        const appointment_id = $('#boxID').innerHTML;
-
-        fetch(`/dashboard/schedule?appointment_id=${appointment_id}`,{
-            method: 'GET',
-            headers:{
-                'Content-Type':'application/json'
-            }
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            response.json()
-        })
-        .then(data => {
-            console.log(date.appointment)
-        })
-        .catch(error =>{
-            console.log(error);
+const view_appointment = $$('#view_appointment');
+if (view_appointment) {
+    view_appointment.forEach((view)=>{
+        view.addEventListener('click', (e) => {
+            e.preventDefault();
+            const appointmentId = $('#boxID').innerHTML;
+            
+            fetch(`/dashboard/schedule/${appointmentId}`, {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json'}
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data){
+                    $('#appnum').value = data.appointment_id;
+                    $('#firstname').value = data.firstname;
+                    $('#lastname').value = data.lastname;
+                    $('#childname').value = data.childname;
+                    $('#contact').value = data.contact;
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    
         });
-    });
+    })
 }
