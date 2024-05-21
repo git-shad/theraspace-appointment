@@ -110,7 +110,7 @@ if(signup){
                 // Do something with the response data
             } else {
                 console.log('No data returned from the backend');
-                // Handle the case where no data is returned
+        
             }
         })
         .catch(error => {
@@ -225,7 +225,7 @@ if (editinfo) {
             }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire({
-                      title: "Successfully!",
+                      title: "Edited Successfully!",
                       text: "Recorded",
                       icon: "success"
                 });
@@ -266,7 +266,7 @@ if (cancel) {
             }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire({
-                      title: "Successfully!",
+                      title: "Deleted Successfully!",
                       text: "Recorded",
                       icon: "success"
                 });

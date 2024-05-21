@@ -103,7 +103,7 @@
             <div id="boxes" class="inset-0 grid grid-cols-1 md:grid-cols-4 gap-8">
               <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg hover:transform hover:scale-110 transition duration-300 ease-in-out relative">
                 <!-- Background image -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2 absolute top-0 right-0 mt-2 mr-2 text-red-600 cursor-pointer"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+                <svg id="historyBtn" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2 absolute top-0 right-0 mt-2 mr-2 text-red-600 cursor-pointer"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
                 
                 <div>
                   <h6 class="text-[12px] font-semibold text-black">Schedule:</h6>
@@ -210,6 +210,26 @@ cancelButton.addEventListener('click', function() {
   section.classList.add('hidden');
   popupBackdrop.classList.add('hidden');
 });
+
+historyBtn.addEventListener('click', function(){
+    Swal.fire({
+        title: "Do you want to proceed?",
+        text: 'Delete History',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes'
+    }).then((result) => {
+        if(result.isConfirmed){
+          Swal.fire({
+             title: "Deleted Successfully!",
+             text: "Recorded",
+             icon: "success"
+          });
+        }
+    })
+})
 
   </script>
 </body>
