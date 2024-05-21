@@ -167,6 +167,10 @@ if(confirm_appointment){
     });
 }
 
+
+/*
+    schedule
+*/
 const view_appointment = $$('#view_appointment');
 if (view_appointment) {
     view_appointment.forEach((view)=>{
@@ -195,3 +199,20 @@ if (view_appointment) {
         });
     })
 }
+
+
+const editinfo = $('editinfo');
+if (editinfo) {
+    editinfo.addEventListener('click',(e)=>{
+        e.preventDefault();
+        $('#appnum').value = data.appointment_id;
+                    $('#firstname').value = data.firstname;
+                    $('#lastname').value = data.lastname;
+                    $('#childname').value = data.childname;
+                    $('#contact').value = data.contact;
+    });
+}
+
+/*
+    END  schedule
+*/
