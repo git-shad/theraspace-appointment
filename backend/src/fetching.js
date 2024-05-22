@@ -231,9 +231,7 @@ if (editinfo) {
                 .catch(error => {
                     console.log(error);
                 })
-                
-
-            })        
+                       
             
         });
     })
