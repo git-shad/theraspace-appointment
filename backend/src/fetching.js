@@ -213,18 +213,8 @@ if (editinfo) {
             const contact = $('#contact').value;
     
             const data = { firstname,lastname,childname,contact };
-            
-            Swal.fire({
-                title: "Do you want to proceed?",
-                text: 'Edit Appointment',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire({
+        
+                Swal.fire({
                       title: "Edited Successfully!",
                       text: "Recorded",
                       icon: "success"
@@ -241,7 +231,7 @@ if (editinfo) {
                 .catch(error => {
                     console.log(error);
                 })
-                }
+                
 
             })        
             
