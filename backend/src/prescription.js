@@ -18,7 +18,6 @@ const prescription = (app,pool)=>{
 
                 res.render('clientDashboard/prescription',{prescriptions});
             } else if (req.session.role === 'admin') {
-              const prescription = await conn.query('');
               res.render('adminDashboard/prescription')
             } else {
                 res.redirect('/login');
