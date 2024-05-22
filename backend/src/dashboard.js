@@ -4,7 +4,12 @@ const dashboard = (app,pool) => {
     });
     
     app.get('/dashboard/main',(req,res) => {
+        
         res.render('adminDashboard/dashboard');
+    });
+
+    app.put('/dashboard/main/:id',(req,res)=>{
+
     });
 }
 

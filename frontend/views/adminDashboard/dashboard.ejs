@@ -151,17 +151,19 @@
             <div class="bg-slate-200 rounded-md p-4 m-2 md:m-0 md:overflow-y-auto md:md:max-h-[320px]">
               <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
 
+                <div id="boxID" hidden></div>
+                <% appointments.forEach((appointment) =>{ %>
                 <div class="bg-white shadow-md hover:shadow-lg hover:transform hover:scale-105 transition duration-300 ease-in-out">
                   <div class="flex justify-center items-center p-4 rounded-md gap-8 ">
-                    <img src="img/logo-removebg-preview.png" alt="" class="w-16">
+                    <img src="<%= appointment.image %>" alt="" class="w-16">
                     <div class="">
-                      <h1 class="text-[16px] font-bold ">Isaac Newton</h1>
-                      <h1 class="text-[12px]"><i>qwerty@gmail.com</i></h1>
+                      <h1 class="text-[16px] font-bold "><%= appointment.name %></h1>
+                      <h1 class="text-[12px]"><i><%= appointment.email %></i></h1>
                     </div>
                   </div>
-                    <button id="appointmentBtn" class="bg-orange-500 text-white w-full flex justify-center p-2 hover:bg-opacity-50">View Details</button>         
+                    <button id="view_appointmentToday" onclick="changeID('<%= appointment.id %>')" class="bg-orange-500 text-white w-full flex justify-center p-2 hover:bg-opacity-50">View Details</button>         
                 </div>
-
+                <% }); %>
               </div>
   
             </div>
@@ -219,11 +221,11 @@ sidebarToggle.addEventListener('click', function() {
 
 const section = document.getElementById('section');
 const cancelButton = document.getElementById('cancelButton');
-const appointmentBtns = document.querySelectorAll('#appointmentBtn');
+const view_appointmentTodays = document.querySelectorAll('#view_appointmentToday');
 const popupBackdrop = document.getElementById('popupBackdrop');
 
-appointmentBtns.forEach(function(appointmentBtn) {
-    appointmentBtn.addEventListener('click', function() {
+view_appointmentTodays.forEach(function(view_appointmentToday) {
+    view_appointmentToday.addEventListener('click', function() {
     section.classList.remove('hidden');
     popupBackdrop.classList.remove('hidden');
 

@@ -251,16 +251,15 @@ if (cancel) {
             }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire({
-                      title: "Deleted Successfully!",
+                      title: "Successfully Canceled!",
                       text: "Recorded",
                       icon: "success"
                 });
-                fetch(`/dashboard/schedule/${id}/delete`,{
+                fetch(`/dashboard/schedule/${id}/cancel`,{
                     method: 'PUT'
                 })
                 .then(response => response.json())
                 .then(data => {
-                    window.location.href = '/dashboard/schedule';
                 })
                 .catch(error => {
                     console.log(error);
@@ -401,5 +400,30 @@ if(send){
         .catch(error =>{
             console.log(error);
         })
+    });
+}
+/*
+END
+*/
+
+/*
+START
+*/
+const view_appointmentToday = $$('#view_appointmentToday');
+if(view_appointmentToday){
+    view_appointmentToday.forEach(view => {
+        view.addEventListener('click', (e) => {
+            e.preventDefault();
+            const id = $('boxID').innerHTML;
+
+            fetch('/dashboard/main/${id}',{
+                method: "PUT"
+            })
+            .then(response => response.json())
+            .then(data => {})
+            .catch(error =>{
+                console.log(error);
+            });
+        });
     });
 }

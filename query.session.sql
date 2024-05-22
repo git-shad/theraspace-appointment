@@ -52,6 +52,12 @@ CREATE TABLE IF NOT EXISTS prescription(
     FOREIGN KEY (portal_id) REFERENCES portal(portal_id)
 );
 
+CREATE TABLE IF NOT EXISTS cancel(
+    cancel_id INT PRIMARY KEY AUTO_INCREMENT,
+    appointment_id INT,
+    FOREIGN KEY (appointment_id) REFERENCES appointment(appointment_id)
+);
+
 ALTER TABLE portal AUTO_INCREMENT = 100;
 ALTER TABLE urole AUTO_INCREMENT = 10;
 ALTER TABLE account AUTO_INCREMENT = 10;

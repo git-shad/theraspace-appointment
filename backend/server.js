@@ -113,9 +113,12 @@ app.get('/signup',(req,res)=>{
 });
 
 app.get('/login', (req, res) => {
-    if(global.whoAccess !== 'no-login'){
+    if(global.whoAccess === 'user'){
         res.redirect('/dashboard/appointments');
-    }else{
+    }else if(global,whoAccess === 'admin'){
+        res.redirect('/dashboard/main');
+    }
+    else{
         res.render('login');
     }
 });
@@ -166,7 +169,7 @@ app.get('/dashboard/logout', (req,res) => {
             res.status(500).send('Error destroying session');
         } else {
             global.whoAccess = 'no-login';
-            res.redirect('/login');
+            res.send('<script>window.close()</script>');
         }
     });
 })
@@ -195,6 +198,10 @@ app.post('/signup', async (req, res) => {
     }finally{
         conn.end();
     }
+});
+
+app.use((req, res, next) => {
+    res.status(404).render('404');
 });
 
 let port = process.env.PORT || 3000;

@@ -115,25 +115,17 @@ const schedule = (app, pool) => {
       }
     });
   
-    app.put('/dashboard/schedule/:id/delete', async (req, res) => {
+    app.put('/dashboard/schedule/:id/cancel', async (req, res) => {
         const conn = await pool.getConnection();
         
         try {
             if (global.whoAccess === 'user') {
                 const { id } = req.params;
-                const result = await conn.query(`
-                DELETE FROM 
-                    appointment 
-                WHERE 
-                    portal_id IN(SELECT portal_id FROM portal WHERE username =?) 
-                AND appointment_id =?
-                `, [req.session.user, id]);
-  
-          if (result.affectedRows > 0) {
-            // deleted
-          } else {
-            // not deleted
-          }
+                const result = await conn.query(`insert into cancel (appointment_id) values(?)`, [id]);
+
+            if (result.affectedRows > 0) {
+              res.redirect('/dashboard/schedule');
+            }
         } else if (global.whoAccess === 'admin') {
           // admin
         } else {
