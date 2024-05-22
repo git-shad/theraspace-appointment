@@ -17,7 +17,9 @@ const schedule = (app, pool) => {
                 WHERE 
                   appointment.portal_id IN (SELECT portal_id FROM portal WHERE username =?) 
                 AND 
-                  DATE(appointment.date) >= CURDATE();
+                  DATE(appointment.date) >= CURDATE()
+                AND
+                  appointment.appointment_id NOT IN(SELECT appointment_id FROM cancel)
                 `, [req.session.user]);
   
                 let schedules = [];

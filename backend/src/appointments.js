@@ -3,19 +3,20 @@ const appointments = (app, pool) => {
         const conn = await pool.getConnection();
         try {
             if (global.whoAccess === 'user') {
-                const schedule = await conn.query('SELECT schedule_id,DATE_FORMAT(time_s, "%h:%i%p") as stime, DATE_FORMAT(time_e, "%h:%i%p") as etime from schedule');
-  
-                let appointments = [];
-                schedule.forEach(row => {
-                    const img = ['random/1.png','random/2.png','random/3.png','random/4.png','random/5.png'];
-                    let appointment = {
-                        schedule: `${row.stime} - ${row.etime}`.toLowerCase(),
-                        image: img[Math.floor(Math.random() * 5)],
-                        id: row.schedule_id
-                    };
-                    appointments.push(appointment);
-                });
-            res.render('clientDashboard/appointments',{appointments});
+              const schedule = await conn.query('SELECT schedule_id,DATE_FORMAT(time_s, "%h:%i%p") as stime, DATE_FORMAT(time_e, "%h:%i%p") as etime from schedule');
+              
+              let appointments = [];
+              schedule.forEach(row => {
+                  const img = ['random/1.png','random/2.png','random/3.png','random/4.png','random/5.png'];
+                  let appointment = {
+                      schedule: `${row.stime} - ${row.etime}`.toLowerCase(),
+                      image: img[Math.floor(Math.random() * 5)],
+                      id: row.schedule_id
+                  };
+                  appointments.push(appointment);
+              });
+
+              res.render('clientDashboard/appointments',{appointments});
         } else if (global.whoAccess === 'admin') {
           res.render('adminDashboard/appointments')
         } else {
@@ -35,7 +36,7 @@ const appointments = (app, pool) => {
         try {
             if (global.whoAccess === 'user') {
                 const {schedule_id,date,fname,lname,childname,contact} = req.body;
-                await conn.query(`INSERT INTO appointment (portal_id,schedule_id,date,firstname,lastname,childname,contact) VALUES((SELECT portal_id from portal where username =?),?,?,?,?,?,?)`,[req.session.user,parseInt(schedule_id),date,fname,lname,childname,contact]);
+                await conn.query('INSERT INTO appointment (portal_id,schedule_id,date,firstname,lastname,childname,contact) VALUES((SELECT portal_id from portal where username =?),?,?,?,?,?,?)',[req.session.user,parseInt(schedule_id),date,fname,lname,childname,contact]);
                 console.log('appointment recorded!');
                 
             } else if (global.whoAccess === 'admin') {
