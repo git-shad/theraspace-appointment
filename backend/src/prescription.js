@@ -3,7 +3,7 @@ const prescription = (app,pool)=>{
         const conn = await pool.getConnection();
         
         try{
-            if (global.whoAccess === 'user') {
+            if (req.session.role === 'user') {
                 const prescription = await conn.query('select prescription.prescription_id as id,date_format(appointment.date, "%m/%d/%Y") as date,appointment.childname as fullname from appointment join prescription on appointment.appointment_id = prescription.appointment_id where appointment.portal_id in (select portal_id from portal where username = ?)',[req.session.user]);
                 
                 let prescriptions = [];
@@ -17,7 +17,7 @@ const prescription = (app,pool)=>{
                 });
 
                 res.render('clientDashboard/prescription',{prescriptions});
-            } else if (global.whoAccess === 'admin') {
+            } else if (req.session.role === 'admin') {
             // admin
             } else {
                 res.redirect('/login');
@@ -34,7 +34,7 @@ const prescription = (app,pool)=>{
         const conn = await pool.getConnection();
         
         try {
-            if (global.whoAccess === 'user') {
+            if (req.session.role === 'user') {
                 const { id } = req.params;
                 const result = await conn.query('select message from prescription join appointment on appointment.appointment_id = prescription.appointment_id where appointment.portal_id in(select portal_id from portal where username = ?) and prescription.prescription_id = ?;', [req.session.user, id]);
                 const prescription = result[0].message;
@@ -42,7 +42,7 @@ const prescription = (app,pool)=>{
                 
                 res.json({msg: prescription});
           
-        } else if (global.whoAccess === 'admin') {
+        } else if (req.session.role === 'admin') {
           // admin
         } else {
           // unauthorized

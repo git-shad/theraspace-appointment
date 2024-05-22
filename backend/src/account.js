@@ -6,7 +6,7 @@ const account = (app, pool) => {
 
   app.get('/dashboard/account', async (req, res) => {
     const conn = await pool.getConnection();
-    if (global.whoAccess === 'user') {
+    if (req.session.role === 'user') {
         const user = await conn.query('SELECT email FROM portal WHERE username =?', [req.session.user]);
         const result = await conn.query('select firstname,lastname,email,address,contact,image from account join portal on account.portal_id = portal.portal_id where portal.portal_id in(select portal_id from portal where username = ?)', [req.session.user]);
         const account = Object.assign({},result[0],{            
@@ -16,7 +16,7 @@ const account = (app, pool) => {
         console.log(account);
 
         res.render('clientDashboard/account',account);
-    } else if (global.whoAccess === 'admin') {
+    } else if (req.session.role === 'admin') {
       // admin
     } else {
       res.redirect('/login');

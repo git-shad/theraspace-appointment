@@ -2,7 +2,7 @@ const appointments = (app, pool) => {
     app.get('/dashboard/appointments', async (req, res) => {
         const conn = await pool.getConnection();
         try {
-            if (global.whoAccess === 'user') {
+            if (req.session.role === 'user') {
               const schedule = await conn.query('SELECT schedule_id,DATE_FORMAT(time_s, "%h:%i%p") as stime, DATE_FORMAT(time_e, "%h:%i%p") as etime from schedule');
               
               let appointments = [];
@@ -17,7 +17,7 @@ const appointments = (app, pool) => {
               });
 
               res.render('clientDashboard/appointments',{appointments});
-        } else if (global.whoAccess === 'admin') {
+        } else if (req.session.role === 'admin') {
           res.render('adminDashboard/appointments')
         } else {
           res.redirect('/login')
@@ -34,11 +34,11 @@ const appointments = (app, pool) => {
         const conn = await pool.getConnection();
         
         try {
-            if (global.whoAccess === 'user') {
+            if (req.session.role === 'user') {
                 const {schedule_id,date,fname,lname,childname,contact} = req.body;
                 await conn.query('INSERT INTO appointment (account_id,portal_id,schedule_id,date,firstname,lastname,childname,contact) VALUES((select account_id from account where portal_id in (SELECT portal_id from portal where username =?)),(SELECT portal_id from portal where username =?),?,?,?,?,?,?)',[req.session.user,req.session.user,parseInt(schedule_id),date,fname,lname,childname,contact]);
                 console.log('appointment recorded!');
-            } else if (global.whoAccess === 'admin') {
+            } else if (req.session.role === 'admin') {
                 //addmin
             } else {
   

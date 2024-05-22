@@ -37,14 +37,19 @@ app.use(session({
 }));
 
 app.use((req, res, next) => {
-    res.cookie('cookieName', 'cookieValue', {
-      expires: new Date(Date.now() + 900000),
-      httpOnly: true,
-      secure: true,
-      sameSite: 'None'
-    });
+    res.locals.session = req.session;
     next();
 });
+
+// app.use((req, res, next) => {
+//     res.cookie('cookieName', 'cookieValue', {
+//       expires: new Date(Date.now() + 900000),
+//       httpOnly: true,
+//       secure: true,
+//       sameSite: 'None'
+//     });
+//     next();
+// });
 
 home(app);
 dashboard(app,pool);
@@ -123,8 +128,10 @@ app.get('/signup',(req,res)=>{
 });
 
 app.get('/login', (req, res) => {
-    if(global.whoAccess !== 'no-login'){
+    if(req.session.role === 'user'){
         res.redirect('/dashboard/appointments');
+    }else if(req.session.role === 'admin'){
+        res.redirect('/dashboard/main');
     }else{
         res.render('login');
     }
@@ -139,15 +146,16 @@ app.post('/login', async (req,res)=>{
             const user = rows[0];
             const result = await bcrypt.compare(password, user.password);
             if(result){
+                
                 req.session.user = user.username;
-                global.whoAccess = await role(pool,req.session.user);
+                req.session.role = user.role; 
 
-                const account = await conn.query('select image,email,username from account join portal on account.portal_id = portal.portal_id where account.portal_id in(select portal_id from portal where username = ?)',[req.session.user]);
-                global.profile = account[0].image;
-                global.email = account[0].email;
-                global.username = req.session.user;
+                const account = await conn.query('select image,email,username from account join portal on account.portal_id = portal.portal_id where account.portal_id in(select portal_id from portal where username =?)',[req.session.user]);
+                req.session.profile = account[0].image;
+                req.session.email = account[0].email;
+                req.session.username = req.session.user;
 
-                res.json({success: 'true',location: user.role === 'user'?'/dashboard/appointments':'/dashboard/main'});
+                res.json({success: 'true',location: req.session.role === 'user'?'/dashboard/appointments':'/dashboard/main'});
                 
 
             }else{

@@ -49,9 +49,9 @@
   <div id="sidebar" class="sidebar fixed bg-orange-500 w-full md:w-[250px] top-0 bottom-0 md:left-0 mt-8 md:mt-0 py-4 h-screen hidden md:block">
     <div class="text-white text-xl flex flex-col h-full">
       <div class="p-4 mt-1 text-center mx-auto flex flex-col items-center justify-center">
-        <img src="<%= global.profile %>" alt="" class="w-16 md:w-24">
-        <h1 class="font-bold text-white text-[20px] tracking-wider"><%= global.username %></h1>
-        <p class="text-sm italic"><%= global.email %></p>
+        <img src="<%= session.profile %>" alt="" class="w-16 md:w-24">
+        <h1 class="font-bold text-white text-[20px] tracking-wider"><%= session.username %></h1>
+        <p class="text-sm italic"><%= session.email %></p>
       </div>
       <hr class="border-t border-white my-4">
       <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">

@@ -3,7 +3,7 @@ const schedule = (app, pool) => {
         const conn = await pool.getConnection();
         
         try{
-            if (global.whoAccess === 'user') {
+            if (req.session.role === 'user') {
                 const schedule = await conn.query(`
                 SELECT 
                   appointment.appointment_id AS app_id,
@@ -33,7 +33,7 @@ const schedule = (app, pool) => {
                 });
             
             res.render('clientDashboard/schedule', {schedules});
-        } else if (global.whoAccess === 'admin') {
+        } else if (req.session.role === 'admin') {
           // admin
         } else {
           res.redirect('/login');
@@ -50,7 +50,7 @@ const schedule = (app, pool) => {
         const conn = await pool.getConnection();
         
         try {
-            if (global.whoAccess === 'user') {
+            if (req.session.role === 'user') {
                 const appointment = await conn.query(`
                 SELECT 
                     appointment_id, 
@@ -66,7 +66,7 @@ const schedule = (app, pool) => {
             `, [req.session.user, req.params.id]);
   
              res.json(appointment[0]);
-        } else if (global.whoAccess === 'admin') {
+        } else if (req.session.role === 'admin') {
           // admin
         } else {
           // unauthorized
@@ -82,7 +82,7 @@ const schedule = (app, pool) => {
     app.put('/dashboard/schedule/:id/edit', async (req, res) => {
         const conn = await pool.getConnection();
         try {
-            if (global.whoAccess === 'user') {
+            if (req.session.role === 'user') {
                 const { firstname, lastname, childname, contact } = req.body;
                 const { id } = req.params;
                 const result = await conn.query(`
@@ -104,7 +104,7 @@ const schedule = (app, pool) => {
             // not updated
           }
 
-        } else if (global.whoAccess === 'admin') {
+        } else if (req.session.role === 'admin') {
           // admin
         } else {
           // unauthorized
@@ -121,14 +121,14 @@ const schedule = (app, pool) => {
         const conn = await pool.getConnection();
         
         try {
-            if (global.whoAccess === 'user') {
+            if (req.session.role === 'user') {
                 const { id } = req.params;
                 const result = await conn.query(`insert into cancel (appointment_id) values(?)`, [id]);
 
             if (result.affectedRows > 0) {
               res.redirect('/dashboard/schedule');
             }
-        } else if (global.whoAccess === 'admin') {
+        } else if (req.session.role === 'admin') {
           // admin
         } else {
           // unauthorized

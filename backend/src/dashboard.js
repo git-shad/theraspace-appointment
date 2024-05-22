@@ -5,7 +5,7 @@ const dashboard = (app,pool) => {
     
     app.get('/dashboard/main', async(req,res) => {
         const conn = await pool.getConnection();
-        if(global.whoAccess === 'admin'){
+        if(req.session.role === 'admin'){
             const appointments = await conn.query('select appointment.appointment_id as id,account.image as image,concat(account.firstname," ",account.lastname) as name,portal.email as email from appointment inner join account on appointment.account_id = account.account_id inner join portal on appointment.portal_id = portal.portal_id');
             
             const result = await conn.query('select (select count(*) from account where portal_id not in(select portal_id from urole where role = "admin")) as users, (select count(*) from appointment where month(date) = month(current_date) and year(date) = year(current_date)) as month, (select count(*) from cancel) as cancel');

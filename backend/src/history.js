@@ -2,7 +2,7 @@ const history = (app,pool) => {
     
     app.get('/dashboard/history',async (req,res)=>{
         const conn = await pool.getConnection();
-        if(global.whoAccess === 'user'){
+        if(req.session.role === 'user'){
             const history = await conn.query(`
             SELECT 
               appointment.appointment_id AS app_id,
@@ -32,7 +32,7 @@ const history = (app,pool) => {
             });
             
             res.render('clientDashboard/history', {historys});
-        }else if(global.whoAccess === 'admin'){
+        }else if(req.session.role === 'admin'){
     
         }else{
     
