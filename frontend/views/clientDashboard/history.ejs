@@ -141,12 +141,14 @@
           </button>
         </div>
         <h1 class="text-orange-500 font-extrabold text-center text-[10px] tracking-widest mb-4">APPOINTMENT DETAILS:</h1>
+
+        <label for="fullname" class="block mb-2 font-bold text-[12px] text-orange-500">Appointment No.</label>
+        <input type="text"  id="appnum" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" readonly>
+
         <label for="fullname" class="block mb-2 font-bold text-[12px] text-orange-500">GUARDIAN:</label>
-
+        <input type="text" id="fullname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" readonly>
         <input type="text" id="fullname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" readonly>
 
-        <input type="text" id="fullname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" readonly>
-  
         <label for="childname" class="block mb-2 font-bold text-[12px] text-orange-500">Children:</label>
         <input type="text" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" readonly>
   
@@ -231,4 +233,5 @@ historyBtn.addEventListener('click', function(){
   </script>
 </body>
 <script src="index.js"></script>
+<script src="fetching.js"></script>
 </html>
