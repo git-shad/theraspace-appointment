@@ -50,8 +50,8 @@
     <div class="text-white text-xl flex flex-col h-full">
       <div class="p-4 mt-1 text-center mx-auto flex flex-col items-center justify-center">
         <img src="img/logo-removebg-preview.png" alt="" class="w-16 md:w-24">
-        <h1 class="font-bold text-white text-[20px] tracking-wider">Isaac Newton</h1>
-        <p class="text-sm italic">qwerty@gmail.com</p>
+        <h1 class="font-bold text-white text-[20px] tracking-wider"><%= username %></h1>
+        <p class="text-sm italic"><%= email %></p>
       </div>
       <hr class="border-t border-white my-4">
       <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
@@ -104,30 +104,31 @@
       <div class="md:ml-6 md:w-[80%] m-2 md:m-0">
         <h1 class="text-black font-bold text-[12px] mb-4 text-center md:text-start">TEACHERS PRESCRIPTION:</h1>
         <div class="bg-slate-200 w-full p-8 rounded-md overflow-y-auto md:max-h-[500px]">
-          <div>
-            <div id="boxes" class="inset-0 grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div id="boxes" class="inset-0 grid grid-cols-1 md:grid-cols-4 gap-8">
 
-              <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg hover:transform hover:scale-110 transition duration-300 ease-in-out relative">
-                <!-- Background image -->
-                  <svg id="deleteBtn" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2 absolute top-0 right-0 mt-2 mr-2 text-red-600 cursor-pointer"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
-                
-                <div>
-                  <h6 class="text-[12px] font-semibold text-black">Schedule:</h6>
-                  <h6 class="text-[12px] font-semibold text-black">12/05/24</h6>
-                  <h2 class="font-semibold text-[18px]">Isaac Newton</h2>
-                </div>
-                
-                <!-- Content for Box 1 -->
-                <div class="mt-8 w-full text-center border py-[6px] bg-orange-500 text-white rounded-lg hover:opacity-75 duration-300 ease-in-out flex items-center justify-center">
-                  <button id="appointmentBtn" class="flex items-center text-[12px]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-notebook-pen mr-2"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4"/><path d="M2 6h4"/><path d="M2 10h4"/><path d="M2 14h4"/><path d="M2 18h4"/><path d="M18.4 2.6a2.17 2.17 0 0 1 3 3L16 11l-4 1 1-4Z"/></svg>View Prescription
-                  </button>
-                </div>
+            <div id="boxID" hidden></div>
+            <% prescriptions.forEach((prescription)=>{ %>
+
+            <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg hover:transform hover:scale-110 transition duration-300 ease-in-out relative">
+              <!-- Background image -->
+                <svg id="deleteBtn" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2 absolute top-0 right-0 mt-2 mr-2 text-red-600 cursor-pointer"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+              
+              <div>
+                <h6 class="text-[12px] font-semibold text-black">Schedule:</h6>
+                <h6 class="text-[12px] font-semibold text-black"><%= prescription.date %></h6>
+                <h2 class="font-semibold text-[18px]"><%= prescription.name %></h2>
               </div>
-
-
-            </div> 
-          </div> <!-- -->
+              
+              <!-- Content for Box 1 -->
+              <div class="mt-8 w-full text-center border py-[6px] bg-orange-500 text-white rounded-lg hover:opacity-75 duration-300 ease-in-out flex items-center justify-center">
+                <button id="view_prescription" onclick="changeID('<%= prescription.id %>')" class="flex items-center text-[12px]">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-notebook-pen mr-2"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4"/><path d="M2 6h4"/><path d="M2 10h4"/><path d="M2 14h4"/><path d="M2 18h4"/><path d="M18.4 2.6a2.17 2.17 0 0 1 3 3L16 11l-4 1 1-4Z"/></svg>View Prescription
+                </button>
+              </div>
+            </div>
+            
+            <% });%>
+          </div>
 
         </div>
       </div>
@@ -150,9 +151,7 @@
           </button>
         </div>
         <h1 class="text-orange-500 font-extrabold text-center text-[10px] tracking-widest mb-4">PRESCRIPTION DETAILS:</h1>
-        <p class="indent-8 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum, totam eaque tempora officiis dicta temporibus, dolorum incidunt, unde aut deleniti enim amet omnis nostrum dolores. Nemo modi maiores quae natus?
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum, totam eaque tempora officiis dicta temporibus, dolorum incidunt, unde aut deleniti enim amet omnis nostrum dolores. Nemo modi maiores quae natus?
-        </p>
+        <p class="indent-8 text-justify" id="msg" ></p>
 
       </div>
     </section>
@@ -181,11 +180,11 @@ sidebarToggle.addEventListener('click', function() {
 
 const section = document.getElementById('section');
 const cancelButton = document.getElementById('cancelButton');
-const appointmentBtns = document.querySelectorAll('#appointmentBtn');
+const view_prescriptions = document.querySelectorAll('#view_prescription');
 const popupBackdrop = document.getElementById('popupBackdrop');
 
-appointmentBtns.forEach(function(appointmentBtn) {
-    appointmentBtn.addEventListener('click', function() {
+view_prescriptions.forEach(function(view_prescription) {
+    view_prescription.addEventListener('click', function() {
     section.classList.remove('hidden');
     popupBackdrop.classList.remove('hidden');
 

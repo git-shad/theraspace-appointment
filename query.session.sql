@@ -43,6 +43,15 @@ CREATE TABLE IF NOT EXISTS appointment(
     FOREIGN KEY (schedule_id) REFERENCES schedule(schedule_id)
 );
 
+CREATE TABLE IF NOT EXISTS prescription(
+    prescription_id INT PRIMARY KEY AUTO_INCREMENT,
+    appointment_id INT,
+    portal_id INT,
+    message VARCHAR(9999),
+    FOREIGN KEY (appointment_id) REFERENCES appointment(appointment_id),
+    FOREIGN KEY (portal_id) REFERENCES portal(portal_id)
+);
+
 ALTER TABLE portal AUTO_INCREMENT = 100;
 ALTER TABLE urole AUTO_INCREMENT = 10;
 ALTER TABLE account AUTO_INCREMENT = 10;
