@@ -31,9 +31,20 @@
             background-position: center;
             background-repeat: no-repeat;
     }
-    .iframe-size {
-      width: 500px;
-      height: 300px;
+    
+    .iframe-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+    }
+    .iframe-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
     }
   </style>
 
@@ -191,28 +202,34 @@
       <div class="md:mt-20 gap-4 items-center text-center p-2">
         <div class="flex flex-col md:flex-row justify-center gap-2 items-center text-center p-2 md:p-0">
           <div class="w-full md:w-1/2 border-2 border-orange-500 m-4 flex flex-col items-center rounded-lg">
-            <iframe src="https://www.facebook.com/plugins/video.php?height=322&href=https%3A%2F%2Fwww.facebook.com%2Ftheraspace.ldc%2Fvideos%2F234923096092593%2F&show_text=false&width=560&t=0" class="w-full h-72 rounded-lg" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            <article class="iframe-container rounded-lg">
+              <iframe src="https://www.facebook.com/plugins/video.php?height=322&href=https%3A%2F%2Fwww.facebook.com%2Ftheraspace.ldc%2Fvideos%2F234923096092593%2F&show_text=false&width=560&t=0" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            </article>
           </div>
           
           <div class="w-full md:w-1/2 border-2 border-orange-500 m-4 flex flex-col items-center rounded-lg">
-            <iframe src="https://www.facebook.com/plugins/video.php?height=322&href=https%3A%2F%2Fwww.facebook.com%2Ftheraspace.ldc%2Fvideos%2F1626082467928888%2F&show_text=false&width=560&t=0" class="w-full h-72 rounded-lg" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            <article class="iframe-container rounded-lg">
+              <iframe src="https://www.facebook.com/plugins/video.php?height=322&href=https%3A%2F%2Fwww.facebook.com%2Ftheraspace.ldc%2Fvideos%2F1626082467928888%2F&show_text=false&width=560&t=0" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            </article>
           </div>
         </div>
   
         <div class="flex flex-col md:flex-row justify-center gap-2 items-center text-center p-2 md:p-0">
           <div class="w-full md:w-1/2 border-2 border-orange-500 m-4 flex flex-col items-center rounded-lg">
-           <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Ftheraspace.ldc%2Fvideos%2F1476663426528513%2F&show_text=false&width=560&t=0" class="w-full h-72 rounded-lg" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            <article class="iframe-container rounded-lg">
+              <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Ftheraspace.ldc%2Fvideos%2F1476663426528513%2F&show_text=false&width=560&t=0" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            </article>
           </div>
           
           <div class="w-full md:w-1/2 border-2 border-orange-500 m-4 flex flex-col items-center rounded-lg">
-           <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Ftheraspace.ldc%2Fvideos%2F1589802468215221%2F&show_text=false&width=476&t=0" class="w-full h-72 rounded-lg" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            <article class="iframe-container rounded-lg">
+              <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Ftheraspace.ldc%2Fvideos%2F1589802468215221%2F&show_text=false&width=476&t=0" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            </article>
           </div>
         </div>
-  
       </div>
     </div>
   </section>
-  
   
   <!-- ABOUT SECTION -->
   <section class="max-w-4xl mx-auto container min-h-screen py-32" id="about">
