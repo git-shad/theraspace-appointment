@@ -40,7 +40,8 @@ app.use((req, res, next) => {
     res.cookie('cookieName', 'cookieValue', {
       expires: new Date(Date.now() + 900000),
       httpOnly: true,
-      secure: true
+      secure: true,
+      sameSite: 'None'
     });
     next();
 });
@@ -122,12 +123,9 @@ app.get('/signup',(req,res)=>{
 });
 
 app.get('/login', (req, res) => {
-    if(global.whoAccess === 'user'){
+    if(global.whoAccess !== 'no-login'){
         res.redirect('/dashboard/appointments');
-    }else if(global,whoAccess === 'admin'){
-        res.redirect('/dashboard/main');
-    }
-    else{
+    }else{
         res.render('login');
     }
 });
@@ -149,12 +147,8 @@ app.post('/login', async (req,res)=>{
                 global.email = account[0].email;
                 global.username = req.session.user;
 
-
-                if(user.role === 'user'){
-                    res.json({success: 'true',location: '/dashboard/appointments'});
-                }else{
-                    res.json({success: 'true',location: '/dashboard/main'});
-                }
+                res.json({success: 'true',location: user.role === 'user'?'/dashboard/appointments':'/dashboard/main'});
+                
 
             }else{
                 res.json({success: 'Incorrect password'});
@@ -179,6 +173,7 @@ app.get('/dashboard/logout', (req,res) => {
         } else {
             global.whoAccess = 'no-login';
             res.send('<script>window.close()</script>');
+            
         }
     });
 })

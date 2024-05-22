@@ -36,7 +36,7 @@ const appointments = (app, pool) => {
         try {
             if (global.whoAccess === 'user') {
                 const {schedule_id,date,fname,lname,childname,contact} = req.body;
-                await conn.query('INSERT INTO appointment (portal_id,schedule_id,date,firstname,lastname,childname,contact) VALUES((SELECT portal_id from portal where username =?),?,?,?,?,?,?)',[req.session.user,parseInt(schedule_id),date,fname,lname,childname,contact]);
+                await conn.query('INSERT INTO appointment (account_id,portal_id,schedule_id,date,firstname,lastname,childname,contact) VALUES((select account_id from account where portal_id in (SELECT portal_id from portal where username =?)),(SELECT portal_id from portal where username =?),?,?,?,?,?,?)',[req.session.user,req.session.user,parseInt(schedule_id),date,fname,lname,childname,contact]);
                 console.log('appointment recorded!');
             } else if (global.whoAccess === 'admin') {
                 //addmin
