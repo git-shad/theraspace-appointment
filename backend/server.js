@@ -4,12 +4,15 @@ const bodyparser = require('body-parser');
 const path = require('path');
 const bcrypt = require('bcrypt');
 const uuid = require('uuid');
-const { createPool, role } = require('./src/db.js');
-const { appointments } = require('./src/appointments.js');
-const { schedule } = require('./src/schedule.js');
-const { history } = require('./src/history.js');
-const { prescription } = require('./src/prescription.js');
-const { account } = require('./src/account.js');
+
+const SEND_MAIL = require('./mailer');
+const { createPool, role } = require('./src/db');
+const { appointments } = require('./src/appointments');
+const { schedule } = require('./src/schedule');
+const { history } = require('./src/history');
+const { prescription } = require('./src/prescription');
+const { account } = require('./src/account');
+const { home } = require('./src/home');
 
 const app = express();
 const pool = createPool(); 
@@ -31,11 +34,24 @@ app.use(session({
     saveUninitialized: true
 }));
 
+home(app);
 appointments(app,pool);
 schedule(app,pool);
 history(app,pool);
 prescription(app,pool);
 account(app,pool);
+
+//runtime
+setInterval(async()=>{
+    const conn = await pool.getConnection();
+    const result = await conn.query('select appointment_id,portal_id from appointment');
+    
+    for(let i = 0; i < result.length; i++){
+        
+    }
+
+    conn.release();
+},60000);
 
 app.get('/',(req,res)=>{
     res.redirect('/home')

@@ -166,7 +166,7 @@
       </article>
       <article class="md:w-72 md:h-72 border-2 border-orange-500 m-4 p-4 flex flex-col justify-center text-left rounded-lg mb-10">
         <img src="img/shadow.jpeg" alt="Academic Tutorial" class="object-cover w-full h-full overflow-hidden">
-        <h1 class="text-black text-2xl font-bold text-center">Shadow TEaching</h1>
+        <h1 class="text-black text-2xl font-bold text-center">Shadow Teaching</h1>
         
        
       </article>
@@ -291,13 +291,13 @@
         to Hear You</h2>
    <div class="md:flex gap-16 m-4 md:m-0">
     <div class="md:w-1/2">
-      <input type="text" name="" id="" placeholder="Your Name" class="border border-orange-500 p-2 rounded-lg w-full mb-3"><br>
+      <input type="text" id="subject" value="Feedback" placeholder="Feedback" class="border border-orange-500 p-2 rounded-lg w-full mb-3"><br>
 
-      <input type="text" name="" id="" placeholder="Email" class="border border-orange-500 p-2 rounded-lg w-full my-3"><br>
+      <input type="text" id="email" placeholder="Email" class="border border-orange-500 p-2 rounded-lg w-full my-3"><br>
       
-      <textarea name="" id="" rows="5"  placeholder="Message" class="border border-orange-500 p-2 rounded-lg w-full my-3"></textarea>
+      <textarea id="msg" rows="5"  placeholder="Message" class="border border-orange-500 p-2 rounded-lg w-full my-3"></textarea>
       <div class="mx-4 flex justify-center mb-12 md:mb-0">
-        <button class="bg-orange-500 text-white py-2 px-8 rounded-lg  flex items-center">Send<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send-horizontal ml-3"><path d="m3 3 3 9-3 9 19-9Z"/><path d="M6 12h16"/></svg></button>
+        <button id="emailsend" class="bg-orange-500 text-white py-2 px-8 rounded-lg  flex items-center">Send<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send-horizontal ml-3"><path d="m3 3 3 9-3 9 19-9Z"/><path d="M6 12h16"/></svg></button>
       </div>
     </div class="md:w-1/2">
 
@@ -334,4 +334,5 @@
   <!--  -->
 </body>
 <script src="index.js"></script>
+<script src="fetching.js"></script>
 </html>
