@@ -281,7 +281,7 @@ if (cancel) {
 */
 
 /*
-    START  schedule
+    START  
 */
 const view_history = $$('#view_history');
 if (view_history) {
@@ -313,11 +313,11 @@ if (view_history) {
 }
 
 /*
-END  schedule
+    END
 */
 
 /*
-START  schedule
+    START  
 */
 
 const view_prescription = $$('#view_prescription');
@@ -345,5 +345,39 @@ if (view_prescription) {
 }
 
 /*
+    END  
+*/
 
+/*
+START
+*/
+const uploadimg = $('#updateInfo');
+if(uploadimg){
+    uploadimg.addEventListener('click', (e) => {
+        e.preventDefault();
+        const img = $('#image');
+        const formData = new FormData();
+        formData.append('firstname',$('#firstname').value);
+        formData.append('lastname',$('#lastname').value);
+        formData.append('email',$('#email').value);
+        formData.append('address',$('#address').value);
+        formData.append('contact',$('#contact').value);
+        formData.append('image', img.files[0]);
+
+        fetch('/dashboard/upload', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+                
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+    });
+}
+/*
+END
 */

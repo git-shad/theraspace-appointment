@@ -9,12 +9,10 @@ const { appointments } = require('./src/appointments.js');
 const { schedule } = require('./src/schedule.js');
 const { history } = require('./src/history.js');
 const { prescription } = require('./src/prescription.js');
+const { account } = require('./src/account.js');
 
 const app = express();
 const pool = createPool(); 
-let dateTimeObject = new Date();
-console.log(`Date: ${dateTimeObject.toDateString()}`);
-console.log(`Time: ${dateTimeObject.toTimeString()}`);
 
 global.whoAccess = 'no-login';
 
@@ -37,6 +35,7 @@ appointments(app,pool);
 schedule(app,pool);
 history(app,pool);
 prescription(app,pool);
+account(app,pool);
 
 app.get('/',(req,res)=>{
     res.redirect('/home')
@@ -50,17 +49,7 @@ app.get('/signup',(req,res)=>{
     res.render('signup'); 
 });
 
-app.get('/dashboard/account',(req,res) => {
-     
-    if(global.whoAccess === 'user'){
-        //user
-        res.render('clientDashboard/account');
-    }else if(global.whoAccess === 'admin'){
-        //addmin
-    }else{
-        res.redirect('/login')
-    }
-});
+
 
 app.get('/login', (req, res) => {
     if(global.whoAccess !== 'no-login'){
