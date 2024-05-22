@@ -357,11 +357,11 @@ if(uploadimg){
         e.preventDefault();
         const img = $('#image');
         const formData = new FormData();
-        formData.append('firstname',$('#firstname').value);
-        formData.append('lastname',$('#lastname').value);
-        formData.append('email',$('#email').value);
-        formData.append('address',$('#address').value);
-        formData.append('contact',$('#contact').value);
+        formData.append('firstname',$('#fname').value);
+        formData.append('lastname',$('#lname').value);
+        formData.append('email',$('#eml').value);
+        formData.append('address',$('#addr').value);
+        formData.append('contact',$('#cont').value);
         formData.append('image', img.files[0]);
 
         fetch('/dashboard/upload', {

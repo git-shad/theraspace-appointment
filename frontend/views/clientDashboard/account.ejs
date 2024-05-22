@@ -52,9 +52,9 @@
   <div id="sidebar" class="sidebar fixed bg-orange-500 w-full md:w-[250px] top-0 bottom-0 md:left-0 mt-8 md:mt-0 py-4 h-screen hidden md:block">
     <div class="text-white text-xl flex flex-col h-full">
       <div class="p-4 mt-1 text-center mx-auto flex flex-col items-center justify-center">
-        <img src="img/logo-removebg-preview.png" alt="" class="w-16 md:w-24">
-        <h1 class="font-bold text-white text-[20px] tracking-wider">Isaac Newton</h1>
-        <p class="text-sm italic">qwerty@gmail.com</p>
+        <img src="<%= global.profile %>" alt="" class="w-16 md:w-24">
+        <h1 class="font-bold text-white text-[20px] tracking-wider"><%= username %></h1>
+        <p class="text-sm italic"><%= email %></p>
       </div>
       <hr class="border-t border-white my-4">
       <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
@@ -109,10 +109,10 @@
         <div id="boxes" class="bg-slate-200 w-full p-8 rounded-md">
           <div class="bg-white rounded-md p-12 relative">
             <div class="flex flex-col justify-center items-center md:flex-row gap-4">
-                <img src="img/logo-removebg-preview.png" alt="" class="w-28">
+                <img src="<%= global.profile %>" alt="" class="w-28">
                 <div>
-                  <h1>Isaac Newton</h1>
-                  <h3><i>qwerty@gmail.com</i></h3>
+                  <h1><%= username %></h1>
+                  <h3><i><%= email %></i></h3>
                 </div>
             </div>
             <hr class="border-t border-black my-4">
@@ -123,8 +123,8 @@
                   <th class="text-start">Lastname:</th>
                 </tr>
                 <tr>
-                  <td>Isaac</td>
-                  <td>Newton</td>
+                  <td id="firstname"><%= firstname %></td>
+                  <td id="lastname"><%= lastname %></td>
                 </tr>
               </table>
             </div>
@@ -134,7 +134,7 @@
                   <th class="text-start">Address:</th>
                 </tr>
                 <tr>
-                  <td>Impig, Sipocot Cam. Sur</td>
+                  <td id="address"><%= address %></td>
                 </tr>
               </table>
             </div>
@@ -144,7 +144,7 @@
                   <th class="text-start">Contact:</th>
                 </tr>
                 <tr>
-                  <td>0912345678</td>
+                  <td id="contact"><%= contact %></td>
                 </tr>
               </table>
             </div>
@@ -184,15 +184,15 @@
         </div>
         <h1 class="text-orange-500 font-extrabold text-center text-[10px] tracking-widest mb-4">ACCOUNT INFORMATION:</h1>
 
-        <input type="text" id="firstname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Firstname" required>
+        <input type="text" id="fname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Firstname" required>
 
-        <input type="text" id="lastname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Lastname" required>
+        <input type="text" id="lname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Lastname" required>
 
-        <input type="email" id="email" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Email" required>
+        <input type="email" id="eml" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Email" required>
   
-        <input type="text" id="address" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Address" required>
+        <input type="text" id="addr" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Address" required>
 
-        <input type="number" id="contact" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Contact" required>
+        <input type="number" id="cont" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" placeholder="Contact" required>
 
         <label for="" class="block mb-2 font-bold text-[12px] text-orange-500">Upload Image:</label>
         <input type="file" id="image" accept="image/*" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2 text-[12px]" required>

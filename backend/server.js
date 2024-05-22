@@ -70,6 +70,10 @@ app.post('/login', async (req,res)=>{
             if(result){
                 req.session.user = user.username;
                 global.whoAccess = await role(pool,req.session.user);
+
+                const account = await conn.query('select image from account where portal_id in(select portal_id from portal where username = ?)',[req.session.user]);
+                global.profile = account[0].image;
+
                 res.json({success: 'true'});
             }else{
                 res.json({success: 'Incorrect password'});
@@ -106,6 +110,7 @@ app.post('/signup', async (req, res) => {
         const conn = await pool.getConnection();
         await conn.query('INSERT INTO portal (username,email,password) VALUES (?,?,?)',[username, email, hash]);
         await conn.query('insert into urole (portal_id,role) values ((select portal_id from portal where username =?),?)',[username,'user']);
+        await conn.query('insert into account (portal_id,image) values((select portal_id from portal where username = ?),?)', [username, 'img/logo-removebg-preview.png']);
         res.json({redirect: '/login'});
         conn.end();
     } catch (err) {
