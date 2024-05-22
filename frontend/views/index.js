@@ -36,3 +36,8 @@ window.onscroll = () => {
   });
 };
 
+const dateInput = document.getElementById('dateInput');
+const currentDate = new Date();
+const formattedDate = currentDate.toISOString().slice(0,10);
+dateInput.value = formattedDate;
+
