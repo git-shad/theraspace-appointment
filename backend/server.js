@@ -179,9 +179,7 @@ app.get('/dashboard/logout', (req,res) => {
             console.error(err);
             res.status(500).send('Error destroying session');
         } else {
-            global.whoAccess = 'no-login';
-            res.send('<script>window.close()</script>');
-            
+            res.redirect('login');
         }
     });
 })
