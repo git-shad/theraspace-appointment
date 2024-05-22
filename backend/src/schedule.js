@@ -16,21 +16,21 @@ const schedule = (app, pool) => {
                 WHERE appointment.portal_id IN(SELECT portal_id FROM portal WHERE username =?)
                 `, [req.session.user]);
   
-            let schedules = [];
-            schedule.forEach((row) => {
-                let schedule = {
+                let schedules = [];
+                schedule.forEach((row) => {
+                  let schedule = {
                     id: row.app_id,
                     date: row.date,
                     time: `${row.stime} - ${row.etime}`.toLowerCase()
-                };
-                schedules.push(schedule);
+                  };
+                  schedules.push(schedule);
+                });
+            
+            res.render('clientDashboard/schedule', {
+              schedules,
+              username: req.session.user,
+              email: user[0].email
             });
-  
-          res.render('clientDashboard/schedule', {
-            schedules,
-            username: req.session.user,
-            email: user[0].email
-          });
         } else if (global.whoAccess === 'admin') {
           // admin
         } else {
