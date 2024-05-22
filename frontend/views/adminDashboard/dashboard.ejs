@@ -108,7 +108,7 @@
               <div class="gap-8">
                 <h1 class="text-[12px] font-bold ">Happy Clients</h1>
                 <div class="flex gap-4 items-center">
-                  <h1 class="font-bold text-[24px] md:text-[42px]">6</h1>
+                  <h1 class="font-bold text-[24px] md:text-[42px]"><%= count_user %></h1>
                   <div>
                     <h1>This Month</h1>
                   </div>
@@ -121,7 +121,7 @@
               <div class="gap-8">
                 <h1 class="text-[12px] font-bold ">Number of Appointments</h1>
                 <div class="flex gap-4 items-center">
-                  <h1 class="font-bold text-[24px] md:text-[42px]">36</h1>
+                  <h1 class="font-bold text-[24px] md:text-[42px]"><%= count_month %></h1>
                   <div>
                     <h1>This Month</h1>
                   </div>
@@ -134,7 +134,7 @@
               <div class="gap-8">
                 <h1 class="text-[12px] font-bold ">Cancelled Appointments</h1>
                 <div class="flex gap-4 items-center">
-                  <h1 class="font-bold text-[24px] md:text-[42px]">20</h1>
+                  <h1 class="font-bold text-[24px] md:text-[42px]"><%= count_cancel %></h1>
                   <div>
                     <h1>This Month</h1>
                   </div>
@@ -146,7 +146,7 @@
 
           <div>
             <div class="flex justify-center items-center md:justify-start">
-            <span class="my-4 text-black font-bold tracking-widest text-center md:text-start text-[16px]">Today - 8 Appointments</span>
+            <span class="my-4 text-black font-bold tracking-widest text-center md:text-start text-[16px]">Today - <%= count_appointment %> Appointments</span>
             </div>
             <div class="bg-slate-200 rounded-md p-4 m-2 md:m-0 md:overflow-y-auto md:md:max-h-[320px]">
               <div class="grid grid-cols-1 md:grid-cols-3 gap-4">

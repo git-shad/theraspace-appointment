@@ -4,7 +4,7 @@ const bodyparser = require('body-parser');
 const path = require('path');
 const bcrypt = require('bcrypt');
 const uuid = require('uuid');
-const ejs = require('ejs');
+const os = require('os');
 
 const SEND_MAIL = require('./mailer');
 const { createPool, role } = require('./src/db');
@@ -208,7 +208,24 @@ app.use((req, res, next) => {
     res.status(404).render('404');
 });
 
+
 let port = process.env.PORT || 3000;
+let networkInterfaces = os.networkInterfaces();
+let ipAddress = null;
+
+for (let interfaceName in networkInterfaces) {
+    if (networkInterfaces.hasOwnProperty(interfaceName)) {
+        let interfaceAddresses = networkInterfaces[interfaceName];
+        for (let i = 0; i < interfaceAddresses.length; i++) {
+            let address = interfaceAddresses[i];
+            if (address.family === 'IPv4' &&!address.internal) {
+                ipAddress = address.address;
+                break;
+            }
+        }
+    }
+}
+
 app.listen(port, () => {
-    console.log(`Server listening on port: ${port}`);
+    console.log(`Server listening on http://${ipAddress}:${port}`);
 });
