@@ -3,7 +3,7 @@ const SEND_MAIL = require('./mailer');
 const message = "theraspace message";
 const mailOptions = {
   from: 'isaacnievarez@gmail.com',
-  to: "alipante89@gmail.com",
+  to: "isaacnievarez@gmail.com",
   subject: "Theraspace report",
   text: message,
   html: `<p>${message}</p>`
