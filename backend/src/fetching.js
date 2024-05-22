@@ -475,3 +475,10 @@ if(view_appointmentToday){
         });
     });
 }
+/*
+END
+*/
+
+/*
+START
+*/

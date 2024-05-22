@@ -18,8 +18,27 @@ const prescription = (app,pool)=>{
 
                 res.render('clientDashboard/prescription',{prescriptions});
             } else if (req.session.role === 'admin') {
-              
-              res.render('adminDashboard/prescription')
+                const prescriptions = await conn.query(`SELECT 
+                appointment.appointment_id AS id,
+                LOWER(
+                  CONCAT(
+                    DATE_FORMAT(schedule.time_s, "%h:%i %p"),
+                    ' - ',
+                    DATE_FORMAT(schedule.time_e, "%h:%i %p")
+                  )
+                ) AS time,
+                appointment.childname AS name
+              FROM 
+                appointment 
+              JOIN 
+                schedule ON appointment.schedule_id = schedule.schedule_id 
+              WHERE 
+                appointment.portal_id IN (SELECT portal_id FROM portal WHERE username = ?) 
+                AND appointment.date < CURDATE();
+                `, [req.session.user]);
+
+                console.log(req.session.username)
+              res.render('adminDashboard/prescription',{prescriptions})
             } else {
                 res.redirect('/login');
             }
