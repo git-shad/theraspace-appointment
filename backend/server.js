@@ -4,6 +4,7 @@ const bodyparser = require('body-parser');
 const path = require('path');
 const bcrypt = require('bcrypt');
 const uuid = require('uuid');
+const ejs = require('ejs');
 
 const SEND_MAIL = require('./mailer');
 const { createPool, role } = require('./src/db');
@@ -43,15 +44,55 @@ account(app,pool);
 
 //runtime
 setInterval(async()=>{
+    console.log('runtime looping')
     const conn = await pool.getConnection();
-    const result = await conn.query('select appointment_id,portal_id from appointment');
+    const result = await conn.query('select appointment.portal_id as portal_id,date_format(appointment.date, "%m/%d/%Y") as date,date_format(schedule.time_s, "%h:%i%n") as stime, date_format(schedule.time_e,"%h:%i%n") as etime, firstname, lastname, childname, contact from appointment join schedule on appointment.schedule_id = schedule.schedule_id where date(appointment.date) > curdate();');
     
     for(let i = 0; i < result.length; i++){
+        const template = new ejs.Template(`
+        **Appointment Reminder**
+
+        Dear {{firstname}} {{lastname}},
         
+        This is a friendly reminder that you have an appointment scheduled for {{childname}} tomorrow, {{date}}.
+        
+        **Appointment Details:**
+        
+        * **Date:** {{date}}
+        * **Start Time:** {{stime}}
+        * **End Time:** {{etime}}
+        * **Contact Number:** {{contact}}
+        
+        Please ensure you arrive on time to avoid any inconvenience.
+        
+        If you have any questions or need to reschedule, please don't hesitate to reach out to us.
+        
+        Thank you for choosing our service.
+        
+        Best regards,
+        Theraspace Appointment
+`);
+        const htmlMessage = template.render(result[i]);
+        const email = await conn.query('select email from portal where portal_id = ?',result[i].portal_id);
+        const mailOptions = {
+            from: 'isaacnievarez@gmail.com',
+            to: email,
+            subject: "Reminder",
+            html: htmlMessage
+          };
+          
+          await SEND_MAIL(mailOptions, (error, info) => {
+            if (error) {
+              console.error("Error sending email: ", error);
+            } else {
+              console.log("Email sent successfully");
+              console.log("MESSAGE ID: ", info.messageId);
+            }
+          });
     }
 
     conn.release();
-},60000);
+},1);
 
 app.get('/',(req,res)=>{
     res.redirect('/home')
