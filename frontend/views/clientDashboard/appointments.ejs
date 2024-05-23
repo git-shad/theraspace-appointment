@@ -98,52 +98,44 @@
       <h1 class="md:ml-4 pt-4 text-[30px] md:text-4xl text-orange-500 font-bold tracking-widest text-center md:text-start">APPOINTMENTS</h1>
     </div>
     <hr class="border-t-4 border-orange-500 my-4 md:my-0">
-    <div class="md:flex md:mt-8">
-      <div class="md:ml-6 md:w-[25%] md:h-full flex justify-center md:justify-start mb-4">
 
-        <div>
-          <h1 class="text-black font-bold tracking-widest text-center md:text-start mb-4 text-[12px] mt-4 md:mt-0">SCHEDULE DATE:</h1>
-          <div class="bg-slate-200 rounded-md p-8 m-2 md:m-0 w-full md:w-[350px]">
-            <div class="bg-white p-4 rounded-md">
-              <input type="date" id="dateInput" name="dateInput" class="w-full mx-auto border border-black p-2 rounded-md">
-              <div class="mt-8 w-full text-center border py-[6px] bg-orange-500 text-white rounded-lg hover:opacity-75 duration-300 ease-in-out flex items-center justify-center">
-                <button id="selectDate" class="flex items-center text-[12px]">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-check mr-2"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg>Select Schedule
-                </button>
-              </div>
-            </div>        
-          </div>
+    <div class="md:flex md:mt-8">
+      
+      <div class="md:ml-6 md:w-[80%] m-2 md:m-0">
+        <h1 class="text-black font-bold text-[12px] mb-4 text-center md:text-start mt-4 md:mt-0">AVAILABLE APPOINTMENTS:</h1>
+        <div class="text-center md:text-start">
+          <span class="font-semibold text-[16px] mx-4">Date: </span><input type="date" id="dateInput" name="dateInput" class="mx-auto border p-2 rounded-lg mb-4 md:mb-2 border-slate-500">
         </div>
 
-      </div>
-      <div class="md:w-[50%] m-2 md:m-0">
-        <h1 class="text-black font-bold text-[12px] mb-4 text-center md:text-start">AVAILABLE APPOINTMENTS:</h1>
         <div class="bg-slate-200 w-full p-8 rounded-md md:overflow-y-auto md:max-h-[500px]">
           
-            <div id="boxes" class="inset-0 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-8">
-              <div id="boxID" hidden></div>
-              <% appointments.forEach((appointment) => { %>
+          <div id="boxes" class="inset-0 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-8">
+            <div id="boxID" hidden></div>
+            <% appointments.forEach((appointment) => { %>
+              
+              <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg hover:transform hover:scale-110 transition duration-300 ease-in-out relative">
+                <!-- Background image -->
+                <img src="<%= appointment.image %>" alt="" class="absolute top-0 right-0 w-24 mt-2 mr-2">
                 
-                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg hover:transform hover:scale-110 transition duration-300 ease-in-out relative">
-                  <!-- Background image -->
-                  <img src="<%= appointment.image %>" alt="" class="absolute top-0 right-0 w-24 mt-2 mr-2">
-                  
-                  <div>
-                    <h6 class="text-[12px] font-semibold text-black">Schedule:</h6>
-                    <h2 class="font-semibold"><%= appointment.schedule %></h2>
-                  </div>
-                  
-                  <!-- Content for Box 1 -->
-                  <div class="mt-8 w-full md:w-[70%] text-center border py-[6px] bg-orange-500 text-white rounded-lg hover:opacity-75 duration-300 ease-in-out flex items-center justify-center">
-                    <button id="appointmentBtn" onclick="changeID('<%= appointment.id %>')" class="flex items-center text-[12px]">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-days mr-2"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>Appointment Now
-                    </button>
-                  </div>
+                <div>
+                  <h6 class="text-[12px] font-semibold text-black">Schedule:</h6>
+                  <h2 class="font-semibold"><%= appointment.schedule %></h2>
                 </div>
-                <% }); %>
-            </div>          
-        </div>
+                
+                <!-- Content for Box 1 -->
+                <div class="mt-8 w-full md:w-[70%] text-center border py-[6px] bg-orange-500 text-white rounded-lg hover:opacity-75 duration-300 ease-in-out flex items-center justify-center">
+                  <button id="appointmentBtn" onclick="changeID('<%= appointment.id %>')" class="flex items-center text-[12px]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-days mr-2"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>Appointment Now
+                  </button>
+                </div>
+              </div>
+              <% }); %>
+          </div>          
       </div>
+        
+
+      </div>
+      
     </div>  
   </div>
 
