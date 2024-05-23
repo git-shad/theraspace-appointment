@@ -37,7 +37,7 @@ const schedule = (app, pool) => {
             res.render('clientDashboard/schedule', {schedules});
         } else if (req.session.role === 'admin') {
             const times = await conn.query("SELECT LOWER(CONCAT(TIME_FORMAT(time_s, '%l:%i %p'), ' ', TIME_FORMAT(time_e, '%l:%i %p'))) AS time FROM schedule");
-            console.log(times);
+            
             res.render('adminDashboard/schedule',{times});
         } else {
           res.redirect('/login');
@@ -49,7 +49,8 @@ const schedule = (app, pool) => {
         conn.end();
       }
     });
-  
+
+
     app.put('/dashboard/schedule/:id', async (req, res) => {
         const conn = await pool.getConnection();
         
@@ -82,7 +83,31 @@ const schedule = (app, pool) => {
         conn.end();
       }
     });
-  
+
+    app.put('/dashboard/schedule/set', async (req, res) => {
+      const conn = await pool.getConnection();
+      
+      try {
+          if (req.session.role === 'user') {
+          } else if (req.session.role === 'admin') {
+              const {stime,etime} = req.body;
+              const schedule_id = await conn.query(`
+              INSERT INTO schedule (start_time, end_time)
+              VALUES (?, ?)
+              `,[stime,etime]);
+              console.log(schedule_id)
+
+          } else {
+        
+          }
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
+    } finally {
+      conn.end();
+    }
+  });
+
     app.put('/dashboard/schedule/:id/edit', async (req, res) => {
         const conn = await pool.getConnection();
         try {
