@@ -1,11 +1,10 @@
-console.log('heyy');
 const view_prescription = $$('#view_prescription');
 if (view_prescription) {
     view_prescription.forEach((view)=>{
         view.addEventListener('click', (e) => {
             e.preventDefault();
             const id = $('#boxID').innerHTML;
-            console.log(id);
+            
             fetch(`/dashboard/prescription/${id}`, {
                 method: 'PUT'
             })

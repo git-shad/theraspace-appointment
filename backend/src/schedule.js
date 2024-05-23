@@ -36,7 +36,7 @@ const schedule = (app, pool) => {
             
             res.render('clientDashboard/schedule', {schedules});
         } else if (req.session.role === 'admin') {
-
+          
           res.render('adminDashboard/schedule');
         } else {
           res.redirect('/login');
