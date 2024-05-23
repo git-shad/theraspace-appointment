@@ -6,21 +6,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>404 - Page Not Found</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
+    .preloader {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      height: 100vh;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
     }
-   .error-code {
-      font-size: 10rem;
-      font-weight: bold;
-      color: #ff69b4;
+    .preloader img {
+      max-width: 50%;
+      height: auto;
     }
   </style>
 </head>
 <body>
-  <h1 class="error-code">404</h1>
-  <h2>Oops, page not found!</h2>
-  <p>The page you're looking for doesn't exist.</p>
-  <p>You can try going back to the <a href="/">homepage</a> or searching for what you're looking for.</p>
+  <div class="preloader">
+    <img src="img/404Error.gif" alt="Loading">
+  </div>
 </body>
 </html>
