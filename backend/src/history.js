@@ -38,6 +38,30 @@ const history = (app,pool) => {
     
         }
     });
+
+    app.put('/dashboard/history/:id', async (req, res) => {
+      const conn = await pool.getConnection();
+      if (req.session.role === 'user') {
+        try {
+          await conn.beginTransaction();
+          await conn.query('DELETE FROM cancel WHERE appointment_id =?', [req.params.id]);
+          await conn.query('DELETE FROM prescription WHERE appointment_id =?', [req.params.id]);
+          await conn.query('DELETE FROM appointment WHERE appointment_id =?', [req.params.id]);
+          await conn.commit();
+          res.json({ success: 'true' });
+        } catch (err) {
+          await conn.rollback();
+          console.error(err);
+          res.status(500).json({ error: 'Failed to delete appointment' });
+        } finally {
+          conn.end();
+        }
+      } else if (req.session.role === 'admin') {
+        //...
+      } else {
+        //...
+      }
+    });
 }
 
 module.exports = {history};
