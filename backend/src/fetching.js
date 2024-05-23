@@ -21,11 +21,16 @@ function confirmLogout() {
       confirmButtonText: 'Yes, log me out!'
     }).then((result) => {
       if (result.isConfirmed) {
-        // Perform logout action here, e.g., redirect to logout page
-        window.location.href = 'logout';
+        Swal.fire({
+          title: "Successfully Logged Out!",
+          text: "Recorded",
+          icon: "success"
+        }).then(() => {
+          window.location.href = 'logout';
+        });
       }
     });
-  }
+}  
 
 const login = $('#login');
 if(login){

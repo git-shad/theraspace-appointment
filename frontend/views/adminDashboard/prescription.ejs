@@ -111,7 +111,7 @@
               <% prescriptions.forEach((prescription)=>{ %>
               <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg hover:transform hover:scale-110 transition duration-300 ease-in-out relative">
                 <!-- Background image -->
-                  <svg id="deleteBtn" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2 absolute top-0 right-0 mt-2 mr-2 text-red-600 cursor-pointer"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+                  <svg onclick="deleteBtn()" id="deleteBtn" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2 absolute top-0 right-0 mt-2 mr-2 text-red-600 cursor-pointer"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
                 
                 <div>
                   <h6 class="text-[12px] font-semibold text-black">Schedule:</h6>
@@ -153,14 +153,7 @@
           </button>
         </div>
         <h1 class="text-orange-500 font-extrabold text-center text-[10px] tracking-widest mb-4">PRESCRIPTION DETAILS:</h1>
-        <textarea name="" id=""  class="border border-orange-500 text-[14px] w-full h-56 p-1" placeholder="Create Prescription">
-        </textarea>
-
-        <div class="mt-4 w-full text-center border py-[6px] bg-orange-500 text-white rounded-lg hover:opacity-75 duration-300 ease-in-out flex items-center justify-center">
-          <button id="" class="flex items-center text-[12px]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-check mr-2"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>Submit Prescription
-          </button>
-        </div>
+        <textarea name="" id=""  class="border border-orange-500 text-[14px] w-full h-56 p-1" placeholder="Create Prescription" readonly></textarea>
 
       </div>
     </section>
@@ -217,7 +210,7 @@ cancelButton.addEventListener('click', function() {
   popupBackdrop.classList.add('hidden');
 });
 
-deleteBtn.addEventListener('click', function(){
+function deleteBtn(){
   Swal.fire({
       title: 'Are you sure?',
       text: 'Delete Prescription',
@@ -235,7 +228,8 @@ deleteBtn.addEventListener('click', function(){
         });
       }
     });
-})
+}
+
 
 // Calendar Date
 const dateInput = document.getElementById('dateInput');
