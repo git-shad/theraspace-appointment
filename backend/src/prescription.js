@@ -72,46 +72,7 @@ const prescription = (app,pool)=>{
       }
     });
 
-    // app.post('/dashboard/prescription/change',async(req,res)=>{
-    //   const conn = await pool.getConnection();
-      
-    //     try{
-    //         if (req.session.role === 'user') {
-
-    //         } else if (req.session.role === 'admin') {
-    //           const {inputDate} = req.body;
-    //           const prescriptions = await conn.query(`SELECT 
-    //             appointment.appointment_id AS id,date,
-    //             LOWER(
-    //               CONCAT(
-    //                 DATE_FORMAT(schedule.time_s, "%h:%i %p"),
-    //                 ' - ',
-    //                 DATE_FORMAT(schedule.time_e, "%h:%i %p")
-    //               )
-    //             ) AS time,
-    //             appointment.childname AS childname
-    //           FROM 
-    //             appointment 
-    //           JOIN 
-    //             schedule ON appointment.schedule_id = schedule.schedule_id 
-    //           WHERE appointment.date < CURDATE() and appointment.date = ?
-    //             `,[inputDate]);
-
-    //             console.log(inputDate);
-    //             if(prescriptions.length > 0){
-    //               console.log('new status');
-    //               res.render('adminDashboard/prescription',{prescriptions})
-    //             }
-    //         } else {
-    //             res.redirect('/login');
-    //         }
-    //   } catch (err) {
-    //     console.error(err);
-    //     res.status(500).send('Internal Server Error');
-    //   } finally {
-    //     conn.end();
-    //   }
-    // })
+    
 }
 
 module.exports = {prescription};

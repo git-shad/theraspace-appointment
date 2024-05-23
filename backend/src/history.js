@@ -48,6 +48,7 @@ const history = (app,pool) => {
               DATE(appointment.date) < CURDATE()
             OR
               appointment.appointment_id IN(SELECT appointment_id FROM cancel)
+            ORDER BY appointment.date ASC
                 `, [req.session.user]);
   
             let historys = [];
