@@ -293,44 +293,6 @@ if (editinfo) {
     })
 }
 
-const cancel = $$('#delapp');
-if (cancel) {
-    cancel.forEach(cancel => {
-        cancel.addEventListener('click',(e)=>{
-            e.preventDefault();
-            const id = $('#boxID').innerHTML;
-            Swal.fire({
-                title: "Do you want to proceed?",
-                text: 'Cancel Appointment',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire({
-                      title: "Successfully Canceled!",
-                      text: "Recorded",
-                      icon: "success"
-                });
-                fetch(`/dashboard/schedule/${id}/cancel`,{
-                    method: 'PUT'
-                })
-                .then(response => response.json())
-                .then(data => {
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-                }
-            })
-
-            
-    
-        });
-    })
-}
 /*
     END  schedule
 */
@@ -346,6 +308,35 @@ if (view_history) {
             const id = $('#boxID').innerHTML;
             
             fetch(`/dashboard/schedule/${id}`, {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json'}
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data){
+                    $('#appnum').value = data.appointment_id;
+                    $('#firstname').value = data.firstname;
+                    $('#lastname').value = data.lastname;
+                    $('#childname').value = data.childname;
+                    $('#contact').value = data.contact;
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    
+        });
+    })
+}
+
+const view_historyA = $$('#view_historyA');
+if (view_historyA) {
+    view_historyA.forEach((view)=>{
+        view.addEventListener('click', (e) => {
+            e.preventDefault();
+            const id = $('#boxID').innerHTML;
+            console.log(id);
+            fetch(`/dashboard/history/view/${id}`, {
                 method: 'PUT',
                 headers: {'Content-Type': 'application/json'}
             })

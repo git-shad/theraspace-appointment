@@ -13,7 +13,11 @@ function Menu(icon) {
 
 window.addEventListener('load', function () {
     setTimeout(function () {
-          document.querySelector('.preloader').style.display = 'none';
+      let a = document.querySelector('.preloader')
+      if(a){
+        a.style.display = 'none';
+      }
+          
     }, 1000);
 });
 
@@ -37,7 +41,9 @@ window.onscroll = () => {
 };
 
 const dateInput = document.getElementById('dateInput');
-const currentDate = new Date();
-const formattedDate = currentDate.toISOString().slice(0,10);
-dateInput.value = formattedDate;
+if(dateInput){
+  const currentDate = new Date();
+  const formattedDate = currentDate.toISOString().slice(0,10);
+  dateInput.value = formattedDate;
+}
 

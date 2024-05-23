@@ -229,10 +229,46 @@ cancelButton.addEventListener('click', function() {
   popupBackdrop.classList.add('hidden');
 });
 
-const dateInput = document.getElementById('dateInput');
-const currentDate = new Date();
-const formattedDate = currentDate.toISOString().slice(0,10);
-dateInput.value = formattedDate;
+
+function $$($){
+    return document.querySelectorAll($);
+}
+
+const cancel = $$('#delapp');
+if (cancel) {
+    cancel.forEach(cel => {
+        cel.addEventListener('click',(e)=>{
+            e.preventDefault();
+            const id = $('#boxID').innerHTML;
+            Swal.fire({
+                title: "Do you want to proceed?",
+                text: 'Cancel Appointment',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                      title: "Successfully Canceled!",
+                      text: "Recorded",
+                      icon: "success"
+                });
+                fetch(`/dashboard/schedule/${id}/cancel`,{
+                    method: 'PUT'
+                })
+                .then(response => response.json())
+                .then(data => {
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+                }
+            })
+        });
+    })
+}
 
 
   </script>
