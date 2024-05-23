@@ -115,9 +115,9 @@
               
                 <div>
                   <h6 class="text-[12px] font-semibold text-black">Schedule:</h6>
-                  <h6 class="text-[12px] font-semibold text-black">Date:</h6>
+                  <h6 class="text-[12px] font-semibold text-black"><%= schedule.date %></h6>
                   <h6 class="text-[12px] font-semibold text-black"><%= schedule.time %></h6>
-                  <h2 class="font-semibold text-[18px]">Isaac Newton</h2>
+                  <h2 class="font-semibold text-[18px]"><%= schedule.name %></h2>
                 </div>
               
                 <!-- Content for Box 1 -->
@@ -274,5 +274,6 @@ if (cancel) {
   </script>
   <script src="index.js"></script>
   <script src="fetching.js"></script>
+  <script src="fetching/user/schedule.js"></script>
 </body>
 </html>

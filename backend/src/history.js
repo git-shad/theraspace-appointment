@@ -121,6 +121,25 @@ const history = (app,pool) => {
       conn.end();
     }
   });
+
+  app.post('/dashboard/history/msg',async(req,res)=>{
+    const conn = await pool.getConnection();
+    try {
+          if (req.session.role === 'user') {
+              
+          } else if (req.session.role === 'admin') {
+            const { message,appointemnt_id } = req.body;
+            await conn.query('')
+          } else {
+            
+          }
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
+    } finally {
+      conn.end();
+    }
+  });
 }
 
 module.exports = {history};
