@@ -179,7 +179,7 @@ app.get('/dashboard/logout', (req,res) => {
             console.error(err);
             res.status(500).send('Error destroying session');
         } else {
-            res.redirect('login');
+            res.redirect('/login');
         }
     });
 })
