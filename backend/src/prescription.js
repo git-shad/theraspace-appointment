@@ -53,7 +53,7 @@ const prescription = (app,pool)=>{
         try {
             if (req.session.role === 'user') {
                 const { id } = req.params;
-                const result = await conn.query('select message from prescription join appointment on appointment.appointment_id = prescription.appointment_id where appointment.portal_id in(select portal_id from portal where username = ?) and prescription.prescription_id = ?;', [req.session.user, id]);
+                const result = await conn.query('select message from prescription join appointment on appointment.appointment_id = prescription.appointment_id where appointment.portal_id in(select portal_id from portal where username = ?) and prescription.prescription_id = ? order by appointment.date ASC;', [req.session.user, id]);
                 const prescription = result[0].message;
                 console.log(prescription);
                 
