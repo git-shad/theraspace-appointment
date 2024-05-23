@@ -16,7 +16,9 @@ const history = (app,pool) => {
             WHERE 
               appointment.portal_id IN (SELECT portal_id FROM portal WHERE username =?) 
             AND 
-              DATE(appointment.date) < CURDATE();
+              DATE(appointment.date) < CURDATE()
+            OR
+              appointment.appointment_id IN(SELECT appointment_id FROM cancel)
                 `, [req.session.user]);
   
             let historys = [];

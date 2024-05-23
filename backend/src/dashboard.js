@@ -3,9 +3,13 @@ const dashboard = (app,pool) => {
         res.redirect('/dashboard/main');
     });
     
-    app.get('/dashboard/main',(req,res) => {
+    app.get('/dashboard/main', async(req,res) => {
+        const conn = await pool.getConnection();
         
-        res.render('adminDashboard/dashboard');
+        if(global.wwhoAccess === 'admin'){
+            
+            res.render('adminDashboard/dashboard');
+        }
     });
 
     app.put('/dashboard/main/:id',(req,res)=>{

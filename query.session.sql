@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS schedule(
 
 CREATE TABLE IF NOT EXISTS appointment(
     appointment_id INT PRIMARY KEY AUTO_INCREMENT,
+    account_id INT,
     portal_id INT,
     schedule_id INT,
     date DATE,
@@ -40,7 +41,8 @@ CREATE TABLE IF NOT EXISTS appointment(
     childname VARCHAR(128),
     contact VARCHAR(11),
     FOREIGN KEY (portal_id) REFERENCES portal(portal_id),
-    FOREIGN KEY (schedule_id) REFERENCES schedule(schedule_id)
+    FOREIGN KEY (schedule_id) REFERENCES schedule(schedule_id),
+    FOREIGN KEY (account_id) REFERENCES account(account_id)
 );
 
 CREATE TABLE IF NOT EXISTS prescription(
@@ -63,4 +65,5 @@ ALTER TABLE urole AUTO_INCREMENT = 10;
 ALTER TABLE account AUTO_INCREMENT = 10;
 ALTER TABLE appointment AUTO_INCREMENT = 10;
 ALTER TABLE schedule AUTO_INCREMENT = 10;
+
 
