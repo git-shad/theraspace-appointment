@@ -47,46 +47,46 @@
   </div>
   
   <div id="sidebar" class="sidebar fixed bg-orange-500 w-full md:w-[250px] top-0 bottom-0 md:left-0 mt-8 md:mt-0 py-4 h-screen hidden md:block">
-    <div class="text-white text-xl flex flex-col justify-between h-full">
+    <div class="text-white text-xl flex flex-col h-full">
       <div class="p-4 mt-1 text-center mx-auto flex flex-col items-center justify-center">
         <img src="<%= session.profile %>" alt="" class="w-16 md:w-24">
         <h1 class="font-bold text-white text-[20px] tracking-wider"><%= session.username %></h1>
         <p class="text-sm italic"><%= session.email %></p>
       </div>
       <hr class="border-t border-white my-4">
-      <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
-        <a href="dashboard" class="w-full flex justify-start items-center py-2 text-[15px] active">
-          <ion-icon name="home-outline" class="pr-4 pl-4 md:text-2xl"></ion-icon>
+      <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1 mt-2">
+        <a href="dashboard" class="w-full flex justify-start items-center py-3 text-[15px] active">
+          <ion-icon name="home-outline" class="pr-4 pl-4 text-2xl"></ion-icon>
           <span>DASHBOARD</span>
         </a>
       </div>
       <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
-        <a href="appointments" class="w-full flex justify-start items-center py-2 text-[15px] hover:opacity-60 hover:duration-200">
-          <ion-icon name="calendar-outline" class="pr-4 pl-4 md:text-2xl"></ion-icon>         
+        <a href="appointments" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
+          <ion-icon name="calendar-outline" class="pr-4 pl-4 text-2xl"></ion-icon>         
           <span>APPOINTMENT</span>
         </a>
       </div>
       <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
-        <a href="history" class="w-full flex justify-start items-center py-2 text-[15px] hover:opacity-60 hover:duration-200">
-          <ion-icon name="time-outline" class="pr-4 pl-4 md:text-2xl"></ion-icon> 
+        <a href="history" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
+          <ion-icon name="time-outline" class="pr-4 pl-4 text-2xl"></ion-icon> 
           <span>HISTORY</span>
         </a>
       </div>
       <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
-        <a href="prescription" class="w-full flex justify-start items-center py-2 text-[15px] hover:opacity-60 hover:duration-200">
-          <ion-icon name="clipboard-outline" class="pr-4 pl-4 md:text-2xl"></ion-icon> 
+        <a href="prescription" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
+          <ion-icon name="clipboard-outline" class="pr-4 pl-4 text-2xl"></ion-icon> 
           <span>PRESCRIPTION</span>
         </a>
       </div>
       <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1">
-        <a href="schedule" class="w-full flex justify-start items-center py-2 text-[15px] hover:opacity-60 hover:duration-200">
-          <ion-icon name="calendar-number-outline" class="pr-4 pl-4 md:text-2xl"></ion-icon> 
+        <a href="schedule" class="w-full flex justify-start items-center py-3 text-[15px] hover:opacity-60 hover:duration-200">
+          <ion-icon name="calendar-number-outline" class="pr-4 pl-4 text-2xl"></ion-icon> 
           <span>SCHEDULE</span>
         </a>
       </div>
       <div class="text-center cursor-pointer text-xl font-semibold pl-2 my-1 md:my-auto">
-        <button onclick="confirmLogout()" class="w-full flex justify-start items-center py-2 text-[15px] hover:opacity-60 hover:duration-200">
-          <ion-icon name="log-out-outline" class="pr-4 pl-4 md:text-2xl"></ion-icon>
+        <button onclick="confirmLogout()" class="w-full flex justify-start items-center py-1 text-[15px] hover:opacity-60 hover:duration-200">
+          <ion-icon name="log-out-outline" class="pr-4 pl-4 text-2xl"></ion-icon>
           <span>LOG OUT</span>
         </button>
       </div> 
