@@ -36,8 +36,9 @@ const schedule = (app, pool) => {
             
             res.render('clientDashboard/schedule', {schedules});
         } else if (req.session.role === 'admin') {
-          
-          res.render('adminDashboard/schedule');
+            const times = await conn.query("SELECT LOWER(CONCAT(TIME_FORMAT(time_s, '%l:%i %p'), ' ', TIME_FORMAT(time_e, '%l:%i %p'))) AS time FROM schedule");
+            console.log(times);
+            res.render('adminDashboard/schedule',{times});
         } else {
           res.redirect('/login');
         }
