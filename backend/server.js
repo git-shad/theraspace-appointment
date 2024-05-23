@@ -60,60 +60,60 @@ prescription(app,pool);
 account(app,pool);
 
 //runtime
-// setInterval(async () => {
-//     console.log('runtime looping');
-//     const conn = await pool.getConnection();
-//     const result = await conn.query(
-//       'SELECT appointment.portal_id as portal_id, DATE_FORMAT(appointment.date, "%m/%d/%Y") as date, DATE_FORMAT(schedule.time_s, "%h:%i %p") as stime, DATE_FORMAT(schedule.time_e,"%h:%i %p") as etime, firstname, lastname, childname, contact FROM appointment JOIN schedule ON appointment.schedule_id = schedule.schedule_id WHERE DATE(appointment.date) > CURDATE();'
-//     );
+setInterval(async () => {
+    console.log('runtime looping');
+    const conn = await pool.getConnection();
+    const result = await conn.query(
+      'SELECT appointment.portal_id as portal_id, DATE_FORMAT(appointment.date, "%m/%d/%Y") as date, DATE_FORMAT(schedule.time_s, "%h:%i %p") as stime, DATE_FORMAT(schedule.time_e,"%h:%i %p") as etime, firstname, lastname, childname, contact FROM appointment JOIN schedule ON appointment.schedule_id = schedule.schedule_id WHERE DATE(appointment.date) > CURDATE();'
+    );
   
-//     for (let i = 0; i < result.length; i++) {
-//       const htmlMessage = `
-//         <html>
-//           <head>
-//             <title>Appointment Reminder</title>
-//           </head>
-//           <body>
-//             <h1>Appointment Reminder</h1>
-//             <p>Dear ${result[i].firstname} ${result[i].lastname},</p>
-//             <p>This is a friendly reminder that you have an appointment scheduled for ${result[i].childname} tomorrow, ${result[i].date}.</p>
-//             <h2>Appointment Details:</h2>
-//             <ul>
-//               <li><strong>Date:</strong> ${result[i].date}</li>
-//               <li><strong>Start Time:</strong> ${result[i].stime}</li>
-//               <li><strong>End Time:</strong> ${result[i].etime}</li>
-//               <li><strong>Contact Number:</strong> ${result[i].contact}</li>
-//             </ul>
-//             <p>Please ensure you arrive on time to avoid any inconvenience.</p>
-//             <p>If you have any questions or need to reschedule, please don't hesitate to reach out to us.</p>
-//             <p>Thank you for choosing our service.</p>
-//             <p>Best regards,</p>
-//             <p>Theraspace Appointment</p>
-//           </body>
-//         </html>
-//       `;
+    for (let i = 0; i < result.length; i++) {
+      const htmlMessage = `
+        <html>
+          <head>
+            <title>Appointment Reminder</title>
+          </head>
+          <body>
+            <h1>Appointment Reminder</h1>
+            <p>Dear ${result[i].firstname} ${result[i].lastname},</p>
+            <p>This is a friendly reminder that you have an appointment scheduled for ${result[i].childname} tomorrow, ${result[i].date}.</p>
+            <h2>Appointment Details:</h2>
+            <ul>
+              <li><strong>Date:</strong> ${result[i].date}</li>
+              <li><strong>Start Time:</strong> ${result[i].stime}</li>
+              <li><strong>End Time:</strong> ${result[i].etime}</li>
+              <li><strong>Contact Number:</strong> ${result[i].contact}</li>
+            </ul>
+            <p>Please ensure you arrive on time to avoid any inconvenience.</p>
+            <p>If you have any questions or need to reschedule, please don't hesitate to reach out to us.</p>
+            <p>Thank you for choosing our service.</p>
+            <p>Best regards,</p>
+            <p>Theraspace Appointment</p>
+          </body>
+        </html>
+      `;
   
-//       const emailResult = await conn.query('SELECT email FROM portal WHERE portal_id =?', result[i].portal_id);
-//       const email = emailResult[0].email;
-//       const mailOptions = {
-//         from: 'isaacnievarez@gmail.com',
-//         to: email,
-//         subject: "Reminder",
-//         html: htmlMessage
-//       };
+      const emailResult = await conn.query('SELECT email FROM portal WHERE portal_id =?', result[i].portal_id);
+      const email = emailResult[0].email;
+      const mailOptions = {
+        from: 'isaacnievarez@gmail.com',
+        to: email,
+        subject: "Reminder",
+        html: htmlMessage
+      };
   
-//       await SEND_MAIL(mailOptions, (error, info) => {
-//         if (error) {
-//           console.error("Error sending email: ", error);
-//         } else {
-//           console.log("Email sent successfully");
-//           console.log("MESSAGE ID: ", info.messageId);
-//         }
-//       });
-//     }
+      await SEND_MAIL(mailOptions, (error, info) => {
+        if (error) {
+          console.error("Error sending email: ", error);
+        } else {
+          console.log("Email sent successfully");
+          console.log("MESSAGE ID: ", info.messageId);
+        }
+      });
+    }
   
-//     conn.release();
-//   }, 600000);
+    conn.release();
+  }, 600000);
 
 app.get('/',(req,res)=>{
     res.redirect('/home')
