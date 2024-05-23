@@ -1505,6 +1505,22 @@ video {
     }
   }
 
+  .md\:max-h-\[50px\] {
+    max-height: 50px;
+  }
+
+  .md\:max-h-\[0px\] {
+    max-height: 0px;
+  }
+
+  .md\:max-h-\[450px\] {
+    max-height: 450px;
+  }
+
+  .md\:max-h-\[40px\] {
+    max-height: 40px;
+  }
+
   .md\:w-1\/2 {
     width: 50%;
   }
@@ -1649,11 +1665,6 @@ video {
 
   .md\:text-start {
     text-align: start;
-  }
-
-  .md\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
   }
 
   .md\:text-4xl {
