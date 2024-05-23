@@ -130,7 +130,7 @@ if (confirm_appointment) {
         const childname = $('#childname').value;
         const contact = $('#contact').value;
 
-        // Check if any field is empty
+
         if (!schedule_id || !date || !fname || !lname || !childname || !contact) {
             Swal.fire({
                 title: "Error",
@@ -138,7 +138,7 @@ if (confirm_appointment) {
                 icon: "error",
                 confirmButtonColor: '#3085d6'
             });
-            return; // Stop the execution if any field is empty
+            return;
         }
 
         const data = { schedule_id, date, fname, lname, childname, contact };
