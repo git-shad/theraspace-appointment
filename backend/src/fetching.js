@@ -482,3 +482,24 @@ END
 /*
 START
 */
+const prescription_changeInput = $('#dateInput');
+if(prescription_changeInput){
+    prescription_changeInput.addEventListener('change', (e) => {
+        const inputDate = prescription_changeInput.value;
+        
+        fetch('/dashboard/prescription/change',{
+            method: "PUT",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ inputDate })
+        })
+        .then(response => response.json())
+        .then(date => {
+            if(date.reload){
+                window.location.href = date.reload;
+            }
+        })
+        .catch(error =>{
+            console.log(error);
+        });
+    });
+}

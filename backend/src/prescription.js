@@ -27,15 +27,13 @@ const prescription = (app,pool)=>{
                     DATE_FORMAT(schedule.time_e, "%h:%i %p")
                   )
                 ) AS time,
-                appointment.childname AS name
+                appointment.childname AS childname
               FROM 
                 appointment 
               JOIN 
                 schedule ON appointment.schedule_id = schedule.schedule_id 
-              WHERE 
-                appointment.portal_id IN (SELECT portal_id FROM portal WHERE username = ?) 
-                AND appointment.date < CURDATE();
-                `, [req.session.user]);
+              WHERE appointment.date < CURDATE();
+                `);
 
                 console.log(req.session.username)
               res.render('adminDashboard/prescription',{prescriptions})
@@ -74,6 +72,48 @@ const prescription = (app,pool)=>{
         conn.end();
       }
     });
+
+    app.put('/dashboard/prescription/change',async(req,res)=>{
+      const conn = await pool.getConnection();
+        
+        try{
+            if (req.session.role === 'user') {
+
+            } else if (req.session.role === 'admin') {
+              const {inputDate} = req.body;
+              const prescriptions = await conn.query(`SELECT 
+                appointment.appointment_id AS id,
+                LOWER(
+                  CONCAT(
+                    DATE_FORMAT(schedule.time_s, "%h:%i %p"),
+                    ' - ',
+                    DATE_FORMAT(schedule.time_e, "%h:%i %p")
+                  )
+                ) AS time,
+                appointment.childname AS childname
+              FROM 
+                appointment 
+              JOIN 
+                schedule ON appointment.schedule_id = schedule.schedule_id 
+              WHERE 
+                appointment.date < CURDATE()
+              AND
+                appointmennt.date == ?  
+                `,[inputDate]);
+
+                if(prescriptions.length > 0){
+                  res.json({reload: ''});
+                }
+            } else {
+                res.redirect('/login');
+            }
+      } catch (err) {
+        console.error(err);
+        res.status(500).send('Internal Server Error');
+      } finally {
+        conn.end();
+      }
+    })
 }
 
 module.exports = {prescription};

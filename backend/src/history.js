@@ -33,7 +33,7 @@ const history = (app,pool) => {
             
             res.render('clientDashboard/history', {historys});
         }else if(req.session.role === 'admin'){
-    
+          res.render('adminDashboard/history')
         }else{
     
         }
