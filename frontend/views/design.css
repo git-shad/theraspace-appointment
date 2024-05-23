@@ -1505,22 +1505,6 @@ video {
     }
   }
 
-  .md\:max-h-\[50px\] {
-    max-height: 50px;
-  }
-
-  .md\:max-h-\[0px\] {
-    max-height: 0px;
-  }
-
-  .md\:max-h-\[450px\] {
-    max-height: 450px;
-  }
-
-  .md\:max-h-\[40px\] {
-    max-height: 40px;
-  }
-
   .md\:w-1\/2 {
     width: 50%;
   }
