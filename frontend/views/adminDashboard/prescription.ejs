@@ -117,11 +117,12 @@
                   <h6 class="text-[12px] font-semibold text-black">Schedule:</h6>
                   <h6 class="text-[12px] font-semibold text-black">Date:</h6>
                   <h6 class="text-[12px] font-semibold text-black"><%= prescription.time %></h6>
-                  <h2 class="font-semibold text-[18px]"><%= prescription.childname %></h2>
+                  <h2 class="font-semibold text-[12px]">Guardian: <span class="text-[14px] font-bold"><%= prescription.childname %></span></h2>
+                  <h2 class="font-semibold text-[12px]">Child: <span class="text-[14px] font-bold"><%= prescription.childname %></span></h2>
                 </div>
                 
                 <!-- Content for Box 1 -->
-                <div class="mt-8 w-full text-center border py-[6px] bg-orange-500 text-white rounded-lg hover:opacity-75 duration-300 ease-in-out flex items-center justify-center">
+                <div class="mt-4 w-full text-center border py-[6px] bg-orange-500 text-white rounded-lg hover:opacity-75 duration-300 ease-in-out flex items-center justify-center">
                   <button id="write_prescription" onclick="changeID('<%= prescription.id %>')" class="flex items-center text-[12px]">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-notepad-text mr-2"><path d="M8 2v4"/><path d="M12 2v4"/><path d="M16 2v4"/><rect width="16" height="18" x="4" y="4" rx="2"/><path d="M8 10h6"/><path d="M8 14h8"/><path d="M8 18h5"/></svg>View Prescription
                   </button>
