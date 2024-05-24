@@ -21,6 +21,17 @@ if (confirm_appointment) {
             return;
         }
 
+         // Check if contact is numeric and exactly 11 digits
+         if (!/^\d{11}$/.test(contact)) {
+            Swal.fire({
+                title: "Error",
+                text: "Contact number must be exactly 11 digits and numeric.",
+                icon: "error",
+                confirmButtonColor: '#3085d6'
+            });
+            return;
+        }
+
         const data = { schedule_id, date, fname, lname, childname, contact };
 
         Swal.fire({
@@ -57,3 +68,4 @@ if (confirm_appointment) {
         });
     });
 }
+    
