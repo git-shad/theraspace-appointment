@@ -129,7 +129,10 @@ const history = (app,pool) => {
               
           } else if (req.session.role === 'admin') {
             const { message,appointemnt_id } = req.body;
-            await conn.query('')
+            const result = await conn.query('insert into prescription (appointment_id,portal_id,message) values(?,(select portal_id from portal where username = ?),?)',[appointemnt_id,req.session.username,message]);
+            if(result.length > 0){
+              res.json({success:"true"});
+            }
           } else {
             
           }
