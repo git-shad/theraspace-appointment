@@ -108,6 +108,7 @@
           <div>
             <div id="boxes" class="inset-0 grid grid-cols-1 md:grid-cols-4 gap-8">
 
+              <div id="boxID" hidden></div>
               <% historys.forEach((history)=>{ %>
               <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg hover:transform hover:scale-110 transition duration-300 ease-in-out relative">
                 <!-- Background image -->
@@ -115,18 +116,19 @@
                 
                 <div>
                   <h6 class="text-[12px] font-semibold text-black">Schedule:</h6>
+                  <h6 class="text-[12px] font-semibold text-black"><%= history.date %></h6>
                   <h6 class="text-[12px] font-semibold text-black"><%= history.time %></h6>
                   <h2 class="font-semibold text-[18px]"><%= history.name %></h2>
                 </div>
                 
                 <!-- Content for Box 1 -->
                 <div class="mt-4 w-full text-center border py-[6px] bg-white text-orange-500 border border-orange-500 rounded-lg hover:opacity-75 duration-300 ease-in-out flex items-center justify-center">
-                  <button id="write_prescription" class="flex items-center text-[12px]">
+                  <button id="prescription" onclick="changeID('<%= history.id %>')" class="flex items-center text-[12px]">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-notebook-pen mr-2"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4"/><path d="M2 6h4"/><path d="M2 10h4"/><path d="M2 14h4"/><path d="M2 18h4"/><path d="M18.4 2.6a2.17 2.17 0 0 1 3 3L16 11l-4 1 1-4Z"/></svg>Create Prescription
                   </button>
                 </div>
                 <div class="mt-4 w-full text-center border py-[6px] bg-orange-500 text-white rounded-lg hover:opacity-75 duration-300 ease-in-out flex items-center justify-center">
-                  <button id="appointmentBtn" class="flex items-center text-[12px]">
+                  <button id="view_historyA" onclick="changeID('<%= history.id %>')" class="flex items-center text-[12px]">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-history mr-2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>View History
                   </button>
                 </div>
@@ -161,17 +163,17 @@
         <h1 class="text-orange-500 font-extrabold text-center text-[10px] tracking-widest mb-4">APPOINTMENT DETAILS:</h1>
 
         <label for="fullname" class="block mb-2 font-bold text-[12px] text-orange-500">Appointment No.</label>
-        <input type="text" id="fullname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" readonly>
+        <input type="text" id="appnum" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2" readonly>
 
         <label for="fullname" class="block mb-2 font-bold text-[12px] text-orange-500">Guardian:</label>
-        <input type="text" id="fullname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2">
-        <input type="text" id="fullname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2">
+        <input type="text" id="firstname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2">
+        <input type="text" id="lastname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2">
   
         <label for="childname" class="block mb-2 font-bold text-[12px] text-orange-500">Children:</label>
-        <input type="text" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2">
+        <input type="text" id="childname" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2">
   
         <label for="" class="block mb-2 font-bold text-[12px] text-orange-500">Contact:</label>
-        <input type="number" id="age" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2">
+        <input type="number" id="contact" class="w-full border border-orange-500 rounded-md py-1 px-3 mb-2">
 
 
       </div>
@@ -194,11 +196,11 @@
           </button>
         </div>
         <h1 class="text-orange-500 font-extrabold text-center text-[10px] tracking-widest mb-4">PRESCRIPTION DETAILS:</h1>
-        <textarea name="" id=""  class="border border-orange-500 text-[14px] w-full h-56 p-1" placeholder="Create Prescription">
+        <textarea name="" id="message"  class="border border-orange-500 text-[14px] w-full h-56 p-1" placeholder="Create Prescription">
         </textarea>
 
         <div class="mt-4 w-full text-center border py-[6px] bg-orange-500 text-white rounded-lg hover:opacity-75 duration-300 ease-in-out flex items-center justify-center">
-          <button id="" class="flex items-center text-[12px]">
+          <button id="write_prescription" class="flex items-center text-[12px]">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-check mr-2"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>Submit Prescription
           </button>
         </div>
@@ -228,10 +230,10 @@ sidebarToggle.addEventListener('click', function() {
 
 const cancel = document.getElementById('cancel');
 const section1 = document.getElementById('section1');
-const write_prescriptions = document.querySelectorAll('#write_prescription');
+const prescriptions = document.querySelectorAll('#prescription');
 const popupBackdrop1 = document.getElementById('popupBackdrop1');
-write_prescriptions.forEach(function(write_prescription) {
-    write_prescription.addEventListener('click', function() {
+prescriptions.forEach(function(prescription) {
+    prescription.addEventListener('click', function() {
     section1.classList.remove('hidden');
     popupBackdrop1.classList.remove('hidden');
 
@@ -259,11 +261,11 @@ cancel.addEventListener('click', function() {
 
 const section = document.getElementById('section');
 const cancelButton = document.getElementById('cancelButton');
-const appointmentBtns = document.querySelectorAll('#appointmentBtn');
+const view_historyAs = document.querySelectorAll('#view_historyA');
 const popupBackdrop = document.getElementById('popupBackdrop');
 
-appointmentBtns.forEach(function(appointmentBtn) {
-    appointmentBtn.addEventListener('click', function() {
+view_historyAs.forEach(function(view_historyA) {
+    view_historyA.addEventListener('click', function() {
     section.classList.remove('hidden');
     popupBackdrop.classList.remove('hidden');
 
@@ -310,14 +312,11 @@ deleteBtn.addEventListener('click', function(){
     });
 })
 
-// Calendar Date
-const dateInput = document.getElementById('dateInput');
-const currentDate = new Date();
-const formattedDate = currentDate.toISOString().slice(0,10);
-dateInput.value = formattedDate;
 
   </script>
-</body>
+
 <script src="index.js"></script>
 <script src="fetching.js"></script>
+<script src="fetching/admin/history.js"></script>
+</body>
 </html>

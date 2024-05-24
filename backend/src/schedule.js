@@ -9,7 +9,8 @@ const schedule = (app, pool) => {
                   appointment.appointment_id AS app_id,
                   DATE_FORMAT(appointment.date, "%m/%d/%Y") AS date, 
                   DATE_FORMAT(schedule.time_s, "%h:%i%p") AS stime, 
-                  DATE_FORMAT(schedule.time_e, "%h:%i%p") AS etime 
+                  DATE_FORMAT(schedule.time_e, "%h:%i%p") AS etime,
+                  appointment.childname as name
                 FROM 
                   appointment 
                 JOIN 
@@ -27,7 +28,8 @@ const schedule = (app, pool) => {
                   let schedule = {
                     id: row.app_id,
                     date: row.date,
-                    time: `${row.stime} - ${row.etime}`.toLowerCase()
+                    time: `${row.stime} - ${row.etime}`.toLowerCase(),
+                    name: row.name
                   };
                   schedules.push(schedule);
                 });
