@@ -44,7 +44,25 @@ if(write_prescription){
             })
         })
         .then(response => response.json())
-        .then(data => {})
+        .then(data => {
+            if(data.success){
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Prescription submitted successfully.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            } else {
+                console.log(error);
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'There was an error submitting the prescription.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+            
+        })
         .catch(error =>{
             console.log(error);
         })
